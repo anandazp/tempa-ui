@@ -1,0 +1,17 @@
+---
+import { siteData } from "../../../data/site";
+
+import Layout from "../../../layouts/Layout.astro";
+import MainButton from "../../../components/MainButton.astro";
+import CodeBlock from "../../../components/CodeBlock.astro";
+import MainButtonSource from "../../../components/MainButton.astro?raw";
+---
+
+<Layout title={siteData.brand}>
+  <h1 class="text-2xl font-semibold">{siteData.brand}</h1>
+  <p class="font-light">Test</p>
+  <MainButton>Get Started</MainButton>
+  <MainButton variant="outline">View Docs</MainButton>
+
+  <CodeBlock code={MainButtonSource} />
+</Layout>
