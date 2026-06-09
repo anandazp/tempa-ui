@@ -1,0 +1,93 @@
+---
+import { siteData } from "../../../data/site";
+
+import Layout from "../../../layouts/Layout.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import CodeBlock from "../../../components/CodeBlock.astro";
+import BreadcrumbsSource from "../../../components/Breadcrumbs.astro?raw";
+
+const usageCode = `<Breadcrumbs
+  items={[
+    { label: "Home", href: "/" },
+    { label: "Docs", href: "/docs" },
+    { label: "Components" },
+  ]}
+/>`;
+---
+
+<Layout title=`Breadcrumbs | ${siteData.brand}`>
+  <section>
+    <div class="space-y-1">
+      <Breadcrumbs
+        items={[
+          { label: "Docs", href: "/docs" },
+          { label: "Components", href: "/components" },
+          { label: "Breadcrumbs" },
+        ]}
+      />
+      <h2 class="section-title">Breadcrumbs</h2>
+      <p class="section-description">Navigation breadcrumb trail with slash separator.</p>
+    </div>
+
+    <h3 class="section-subtitle">Code</h3>
+    <CodeBlock
+      code={BreadcrumbsSource}
+      showLineNumbers={true}
+      fileName="components/Breadcrumbs.astro"
+    />
+
+    <h3 class="section-subtitle">Preview</h3>
+    <div class="flex flex-col gap-5">
+      <div class="preview-wrapper">
+        <Breadcrumbs
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Docs", href: "/docs" },
+            { label: "Components" },
+          ]}
+        />
+      </div>
+      <div class="preview-wrapper">
+        <Breadcrumbs
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Products", href: "#" },
+            { label: "Category", href: "#" },
+            { label: "Item Details" },
+          ]}
+        />
+      </div>
+    </div>
+
+    <h3 class="section-subtitle">Usage</h3>
+    <CodeBlock language="javascript" code={usageCode} showLineNumbers={true} />
+
+    <h3 class="section-subtitle">Props</h3>
+    <div class="overflow-x-auto">
+      <table class="props-table">
+        <thead>
+          <tr class="tr-head">
+            <th class="th-cell">Prop</th>
+            <th class="th-cell">Type</th>
+            <th class="th-cell">Default</th>
+            <th class="th-desc">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">items</td>
+            <td class="td-cell prop-type">BreadcrumbItem[]</td>
+            <td class="td-cell">—</td>
+            <td class="td-desc">Array of breadcrumb items with label and optional href.</td>
+          </tr>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">class</td>
+            <td class="td-cell prop-type">string</td>
+            <td class="td-cell">—</td>
+            <td class="td-desc">Additional CSS classes.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</Layout>

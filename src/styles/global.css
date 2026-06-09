@@ -36,7 +36,7 @@ main section {
 }
 
 .section-title {
-  @apply text-xl font-semibold;
+  @apply text-xl font-semibold mt-3;
 }
 
 .section-subtitle {
@@ -83,4 +83,61 @@ table.props-table {
 }
 .prop-type {
   @apply font-mono;
+}
+
+/* Sidebar component */
+.sidebar {
+  @apply flex flex-col bg-black-onyx text-white-ghost h-full w-64 transition-all duration-300;
+}
+.sidebar.collapsed {
+  @apply w-16;
+}
+.sidebar-header {
+  @apply flex items-center justify-between px-4 py-4 border-b border-white-ghost/10;
+}
+.sidebar-link {
+  @apply flex items-center gap-3 px-3 py-2 rounded hover:bg-white-ghost/10 transition-colors;
+}
+.sidebar-toggle-btn {
+  @apply p-1 rounded hover:bg-white-ghost/10 transition-colors;
+}
+.sidebar.collapsed .sidebar-label {
+  @apply hidden;
+}
+
+/* Tabs component */
+.tab-list {
+  @apply flex border-b border-black-onyx/10;
+}
+.tab-btn {
+  @apply px-4 py-2 text-sm text-black-onyx/60 hover:text-black-onyx transition-colors;
+}
+.tab-btn-active {
+  @apply text-black-onyx font-medium border-b-2 border-black-onyx;
+}
+.tab-panels {
+  @apply mt-4;
+}
+.tab-panels > [data-tab-panel] {
+  @apply hidden;
+}
+.tab-panels > [data-tab-panel].active {
+  @apply block;
+}
+
+/* Breadcrumbs component */
+.breadcrumbs ol {
+  @apply flex items-center flex-wrap gap-2;
+}
+.breadcrumbs li {
+  @apply flex items-center gap-2;
+}
+.breadcrumb-separator {
+  @apply text-black-onyx/30 text-sm;
+}
+.breadcrumb-link {
+  @apply text-sm text-black-onyx/60 hover:text-black-onyx transition-colors;
+}
+.breadcrumb-current {
+  @apply text-sm text-black-onyx font-medium;
 }

@@ -4,6 +4,7 @@ import { siteData } from "../../../data/site";
 import Layout from "../../../layouts/Layout.astro";
 import MainButton from "../../../components/MainButton.astro";
 import CodeBlock from "../../../components/CodeBlock.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
 import MainButtonSource from "../../../components/MainButton.astro?raw";
 
 const usageCode = `<MainButton variant='primary'>Get Started</MainButton>
@@ -13,9 +14,13 @@ const usageCode = `<MainButton variant='primary'>Get Started</MainButton>
 <Layout title=`Button | ${siteData.brand}`>
   <section>
     <div class="space-y-1">
-      <p class="text-sm">
-        Docs / Components / <span class="font-medium">Button</span>
-      </p>
+      <Breadcrumbs
+        items={[
+          { label: "Docs", href: "/docs" },
+          { label: "Components", href: "/components" },
+          { label: "Button" },
+        ]}
+      />
       <h2 class="section-title">Button</h2>
       <p class="section-description">Button for cta, outline, and link.</p>
     </div>
