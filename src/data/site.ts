@@ -7,4 +7,8 @@ export const siteData = {
     { label: "Docs", href: "/docs" },
     { label: "Components", href: "/components" },
   ],
+  sideNavigationDocs: [
+    { label: "Installation", href: "/components" },
+    { label: "Components", href: "/components" },
+  ],
 };

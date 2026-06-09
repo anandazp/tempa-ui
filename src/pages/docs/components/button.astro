@@ -1,7 +1,7 @@
 ---
 import { siteData } from "../../../data/site";
 
-import Layout from "../../../layouts/Layout.astro";
+import DocsLayout from "../../../layouts/DocsLayout.astro";
 import MainButton from "../../../components/MainButton.astro";
 import CodeBlock from "../../../components/CodeBlock.astro";
 import Breadcrumbs from "../../../components/Breadcrumbs.astro";
@@ -11,7 +11,7 @@ const usageCode = `<MainButton variant='primary'>Get Started</MainButton>
 <MainButton variant='outline' href='https://github.com'>View on GitHub</MainButton>`;
 ---
 
-<Layout title=`Button | ${siteData.brand}`>
+<DocsLayout title=`Button | ${siteData.brand}`>
   <section>
     <div class="space-y-1">
       <Breadcrumbs
@@ -89,9 +89,5 @@ const usageCode = `<MainButton variant='primary'>Get Started</MainButton>
       </table>
     </div>
   </section>
-</Layout>
+</DocsLayout>
 
-<style is:global>
- 
- 
-</style>

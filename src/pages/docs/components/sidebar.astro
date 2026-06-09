@@ -1,7 +1,7 @@
 ---
 import { siteData } from "../../../data/site";
 
-import Layout from "../../../layouts/Layout.astro";
+import DocsLayout from "../../../layouts/DocsLayout.astro";
 import Sidebar from "../../../components/Sidebar.astro";
 import CodeBlock from "../../../components/CodeBlock.astro";
 import Breadcrumbs from "../../../components/Breadcrumbs.astro";
@@ -25,7 +25,7 @@ const collapsedCode = `<Sidebar
 />`;
 ---
 
-<Layout title=`Sidebar | ${siteData.brand}`>
+<DocsLayout title=`Sidebar | ${siteData.brand}`>
   <section>
     <div class="space-y-1">
       <Breadcrumbs
@@ -117,4 +117,4 @@ const collapsedCode = `<Sidebar
       </table>
     </div>
   </section>
-</Layout>
+</DocsLayout>

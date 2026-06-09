@@ -1,7 +1,7 @@
 ---
 import { siteData } from "../../../data/site";
 
-import Layout from "../../../layouts/Layout.astro";
+import DocsLayout from "../../../layouts/DocsLayout.astro";
 import Tabs from "../../../components/Tabs.astro";
 import CodeBlock from "../../../components/CodeBlock.astro";
 import Breadcrumbs from "../../../components/Breadcrumbs.astro";
@@ -17,7 +17,7 @@ const usageCode = `<Tabs tabs={[{ label: "Tab 1" }, { label: "Tab 2" }]}>
 </Tabs>`;
 ---
 
-<Layout title=`Tabs | ${siteData.brand}`>
+<DocsLayout title=`Tabs | ${siteData.brand}`>
   <section>
     <div class="space-y-1">
       <Breadcrumbs
@@ -92,4 +92,4 @@ const usageCode = `<Tabs tabs={[{ label: "Tab 1" }, { label: "Tab 2" }]}>
       </table>
     </div>
   </section>
-</Layout>
+</DocsLayout>

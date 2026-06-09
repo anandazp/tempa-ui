@@ -1,7 +1,7 @@
 ---
 import { siteData } from "../../../data/site";
 
-import Layout from "../../../layouts/Layout.astro";
+import DocsLayout from "../../../layouts/DocsLayout.astro";
 import Breadcrumbs from "../../../components/Breadcrumbs.astro";
 import CodeBlock from "../../../components/CodeBlock.astro";
 import BreadcrumbsSource from "../../../components/Breadcrumbs.astro?raw";
@@ -15,7 +15,7 @@ const usageCode = `<Breadcrumbs
 />`;
 ---
 
-<Layout title=`Breadcrumbs | ${siteData.brand}`>
+<DocsLayout title=`Breadcrumbs | ${siteData.brand}`>
   <section>
     <div class="space-y-1">
       <Breadcrumbs
@@ -90,4 +90,4 @@ const usageCode = `<Breadcrumbs
       </table>
     </div>
   </section>
-</Layout>
+</DocsLayout>
