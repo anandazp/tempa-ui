@@ -56,15 +56,23 @@ const hasLines = showLineNumbers && codeLines.length > 1;
     </svg>
   </button>
 
+  {/* File Name Header */}
+  {
+    fileName && (
+      <div class="code-header px-5 py-2 rounded-t-lg bg-black-onyx/90 border-b border-white/10">
+        <span class="text-sm text-white-ghost font-medium">{fileName}</span>
+      </div>
+    )
+  }
+
   {/* Code Preview */}
   <pre
-    class={`overflow-x-auto rounded-lg bg-black-onyx/90 px-5 py-3 text-sm text-white-ghost font-mono ${showLineNumbers ? "line-numbers" : ""}`}>
-  <p class="font-medium">{fileName}</p>
-  <code class={`language-${language}`}>
-      {code}
+    class={`overflow-x-scroll bg-black-onyx/90 px-5 py-3 text-sm text-white-ghost font-mono ${fileName ? "rounded-b-lg rounded-t-none" : "rounded-lg"} ${showLineNumbers ? "line-numbers" : ""}`}>
+    <code class={`language-${language}`}>
+      {codeLines.map((line, i) => (
+        <span class={`code-line ${hasLines ? "line" : ""}`}>{line || <>&nbsp;</>}</span>
+      ))}
     </code>
-
-    <!-- Kode dengan line number akan ditambahkan disini -->
   </pre>
 </div>
 
@@ -134,6 +142,10 @@ const hasLines = showLineNumbers && codeLines.length > 1;
 </script>
 
 <style is:global>
+  .code-line {
+    display: block;
+  }
+
   /* Optional: Styling untuk line numbers jika dibutuhkan */
   .line-numbers code {
     counter-reset: line;
