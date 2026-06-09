@@ -143,11 +143,8 @@ const hasLines = showLineNumbers && codeLines.length > 1;
 
 <style is:global>
   pre code {
-    display: block;
-  }
-
-  .code-line {
-    display: block;
+    display: flex;
+    flex-direction: column;
   }
 
   /* Optional: Styling untuk line numbers jika dibutuhkan */
