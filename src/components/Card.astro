@@ -1,0 +1,40 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  variant?: "vertical" | "horizontal" | "bordered" | "shadowed";
+  imageSrc?: Parameters<typeof Image>[0]["src"];
+  imageAlt?: string;
+  imageWidth?: number;
+  imageHeight?: number;
+  class?: string;
+}
+
+const {
+  variant = "vertical",
+  imageSrc,
+  imageAlt = "",
+  imageWidth,
+  imageHeight,
+  class: className = "",
+} = Astro.props;
+---
+
+<div class={`card card-${variant} ${className}`}>
+  {
+    (variant === "vertical" || variant === "horizontal") && imageSrc && (
+      <div class="card-image">
+        <Image
+          src={imageSrc}
+          alt={imageAlt}
+          width={imageWidth}
+          height={imageHeight}
+          loading="lazy"
+        />
+      </div>
+    )
+  }
+  <div class="card-body">
+    <slot />
+  </div>
+</div>

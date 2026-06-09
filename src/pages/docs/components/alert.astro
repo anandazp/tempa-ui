@@ -1,0 +1,99 @@
+---
+import { siteData } from "../../../data/site";
+
+import DocsLayout from "../../../layouts/DocsLayout.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import Alert from "../../../components/Alert.astro";
+import CodeBlock from "../../../components/CodeBlock.astro";
+import AlertSource from "../../../components/Alert.astro?raw";
+
+const usageSolid = `<Alert variant="solid">
+  This is a solid alert message.
+</Alert>`;
+
+const usageBordered = `<Alert variant="left-bordered">
+  This is a left-bordered alert message.
+</Alert>`;
+
+const usageDismissible = `<Alert variant="solid" dismissible>
+  You can close this alert.
+</Alert>`;
+---
+
+<DocsLayout title=`Alert | ${siteData.brand}`>
+  <section>
+    <div class="space-y-1">
+      <Breadcrumbs
+        items={[
+          { label: "Docs", href: "/docs" },
+          { label: "Components", href: "/components" },
+          { label: "Alert" },
+        ]}
+      />
+      <h2 class="section-title">Alert</h2>
+      <p class="section-description">Flash message with solid and left-bordered variants.</p>
+    </div>
+
+    <h3 class="section-subtitle">Code</h3>
+    <CodeBlock
+      code={AlertSource}
+      showLineNumbers={true}
+      fileName="components/Alert.astro"
+    />
+
+    <h3 class="section-subtitle">Preview</h3>
+    <div class="flex flex-col gap-5">
+      <div class="preview-wrapper">
+        <h4 class="preview-heading">Solid</h4>
+        <Alert variant="solid">This is a solid alert message.</Alert>
+      </div>
+      <div class="preview-wrapper">
+        <h4 class="preview-heading">Left Bordered</h4>
+        <Alert variant="left-bordered">This is a left-bordered alert message.</Alert>
+      </div>
+      <div class="preview-wrapper">
+        <h4 class="preview-heading">Dismissible</h4>
+        <Alert variant="solid" dismissible>Click the X to close this alert.</Alert>
+      </div>
+    </div>
+
+    <h3 class="section-subtitle">Usage</h3>
+    <CodeBlock language="javascript" code={usageSolid} showLineNumbers={true} />
+    <CodeBlock language="javascript" code={usageBordered} showLineNumbers={true} />
+    <CodeBlock language="javascript" code={usageDismissible} showLineNumbers={true} />
+
+    <h3 class="section-subtitle">Props</h3>
+    <div class="overflow-x-auto">
+      <table class="props-table">
+        <thead>
+          <tr class="tr-head">
+            <th class="th-cell">Prop</th>
+            <th class="th-cell">Type</th>
+            <th class="th-cell">Default</th>
+            <th class="th-desc">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">variant</td>
+            <td class="td-cell prop-type">"solid" | "left-bordered"</td>
+            <td class="td-cell prop-type">"solid"</td>
+            <td class="td-desc">Alert style variant.</td>
+          </tr>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">dismissible</td>
+            <td class="td-cell prop-type">boolean</td>
+            <td class="td-cell prop-type">false</td>
+            <td class="td-desc">Show close button.</td>
+          </tr>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">class</td>
+            <td class="td-cell prop-type">string</td>
+            <td class="td-cell">—</td>
+            <td class="td-desc">Additional CSS classes.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</DocsLayout>

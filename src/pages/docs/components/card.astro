@@ -1,0 +1,168 @@
+---
+import { siteData } from "../../../data/site";
+
+import DocsLayout from "../../../layouts/DocsLayout.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import Card from "../../../components/Card.astro";
+import CodeBlock from "../../../components/CodeBlock.astro";
+import CardSource from "../../../components/Card.astro?raw";
+
+const usageVertical = `<Card variant="vertical" imageSrc="https://picsum.photos/seed/laptop/800/400" imageAlt="Laptop" imageWidth={800} imageHeight={400}>
+  <h3>Card Title</h3>
+  <p>Card description here.</p>
+</Card>`;
+
+const usageBordered = `<Card variant="bordered">
+  <h3>Bordered Card</h3>
+  <p>Minimalist card with thick border.</p>
+</Card>`;
+---
+
+<DocsLayout title=`Card | ${siteData.brand}`>
+  <section>
+    <div class="space-y-1">
+      <Breadcrumbs
+        items={[
+          { label: "Docs", href: "/docs" },
+          { label: "Components", href: "/components" },
+          { label: "Card" },
+        ]}
+      />
+      <h2 class="section-title">Card</h2>
+      <p class="section-description">
+        Content container with multiple layout variants.
+      </p>
+    </div>
+
+    <h3 class="section-subtitle">Code</h3>
+    <CodeBlock
+      code={CardSource}
+      showLineNumbers={true}
+      fileName="components/Card.astro"
+    />
+
+    <h3 class="section-subtitle">Preview</h3>
+    <div class="flex flex-col gap-5">
+      <div class="preview-wrapper">
+        <h4 class="preview-heading">Vertical / Default</h4>
+        <Card
+          variant="vertical"
+          imageSrc="https://picsum.photos/seed/laptop/800/400"
+          imageAlt="Laptop workspace"
+          imageWidth={800}
+          imageHeight={400}
+        >
+          <h3 class="font-medium text-black-onyx">MacBook Pro</h3>
+          <p class="text-sm text-black-onyx/60 mt-1">
+            Powerful laptop for developers with M3 chip and 18-hour battery
+            life.
+          </p>
+        </Card>
+      </div>
+      <div class="preview-wrapper">
+        <h4 class="preview-heading">Horizontal</h4>
+        <Card
+          variant="horizontal"
+          imageSrc="https://picsum.photos/seed/coding/400/400"
+          imageAlt="Code editor"
+          imageWidth={400}
+          imageHeight={400}
+        >
+          <div>
+            <h3 class="font-medium text-black-onyx">Horizontal Card</h3>
+            <p class="text-sm text-black-onyx/60 mt-1">
+              Image on the left, content on the right. Stacks vertically on
+              mobile.
+            </p>
+          </div>
+        </Card>
+      </div>
+      <div class="preview-wrapper">
+        <h4 class="preview-heading">Bordered</h4>
+        <Card variant="bordered">
+          <h3 class="font-medium text-black-onyx">Bordered Card</h3>
+          <p class="text-sm text-black-onyx/60 mt-1">
+            Minimalist card with a thick border and no image.
+          </p>
+        </Card>
+      </div>
+      <div class="preview-wrapper">
+        <h4 class="preview-heading">Shadowed</h4>
+        <Card variant="shadowed">
+          <h3 class="font-medium text-black-onyx">Shadowed Card</h3>
+          <p class="text-sm text-black-onyx/60 mt-1">
+            Minimalist card with subtle shadow and no border.
+          </p>
+        </Card>
+      </div>
+    </div>
+
+    <h3 class="section-subtitle">Usage</h3>
+    <CodeBlock
+      language="javascript"
+      code={usageVertical}
+      showLineNumbers={true}
+    />
+    <CodeBlock
+      language="javascript"
+      code={usageBordered}
+      showLineNumbers={true}
+    />
+
+    <h3 class="section-subtitle">Props</h3>
+    <div class="overflow-x-auto">
+      <table class="props-table">
+        <thead>
+          <tr class="tr-head">
+            <th class="th-cell">Prop</th>
+            <th class="th-cell">Type</th>
+            <th class="th-cell">Default</th>
+            <th class="th-desc">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">variant</td>
+            <td class="td-cell prop-type"
+              >"vertical" | "horizontal" | "bordered" | "shadowed"</td
+            >
+            <td class="td-cell prop-type">"vertical"</td>
+            <td class="td-desc">Card layout variant.</td>
+          </tr>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">imageSrc</td>
+            <td class="td-cell prop-type">ImageMetadata | string</td>
+            <td class="td-cell">—</td>
+            <td class="td-desc"
+              >Image source for vertical/horizontal variants.</td
+            >
+          </tr>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">imageAlt</td>
+            <td class="td-cell prop-type">string</td>
+            <td class="td-cell">""</td>
+            <td class="td-desc">Alt text for the image.</td>
+          </tr>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">imageWidth</td>
+            <td class="td-cell prop-type">number</td>
+            <td class="td-cell">—</td>
+            <td class="td-desc">Image width in pixels.</td>
+          </tr>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">imageHeight</td>
+            <td class="td-cell prop-type">number</td>
+            <td class="td-cell">—</td>
+            <td class="td-desc">Image height in pixels.</td>
+          </tr>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">class</td>
+            <td class="td-cell prop-type">string</td>
+            <td class="td-cell">—</td>
+            <td class="td-desc">Additional CSS classes.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</DocsLayout>

@@ -150,3 +150,83 @@ table.props-table {
 .docs-sidebar-link {
   @apply block px-3 py-1 text-sm text-black-onyx/60 rounded hover:bg-black-onyx/5 hover:text-black-onyx transition-colors;
 }
+
+/* Alert component */
+.alert {
+  @apply relative flex items-start gap-3 px-4 py-3 rounded;
+}
+.alert-solid {
+  @apply bg-black-onyx text-white-ghost;
+}
+.alert-left-bordered {
+  @apply bg-black-onyx/5 border-l-4 border-black-onyx text-black-onyx;
+}
+.alert-content {
+  @apply flex-1 text-sm;
+}
+.alert-close {
+  @apply shrink-0 text-current/60 hover:text-current transition-colors;
+}
+
+/* Card component */
+.card {
+  @apply bg-white-ghost rounded overflow-hidden;
+}
+.card-vertical {
+  @apply flex flex-col;
+}
+.card-horizontal {
+  @apply flex flex-col md:flex-row;
+}
+.card-bordered {
+  @apply border-2 border-black-onyx/20;
+}
+.card-shadowed {
+  @apply shadow-lg shadow-black-onyx/10;
+}
+.card-image {
+  @apply bg-black-onyx/10;
+}
+.card-image img {
+  @apply w-full h-full object-cover;
+}
+.card-horizontal .card-image {
+  @apply md:w-48 md:shrink-0;
+}
+.card-body {
+  @apply p-4;
+}
+
+/* Modal component */
+.modal-overlay {
+  @apply fixed inset-0 z-50 bg-black-onyx/50 flex items-center justify-center p-4 hidden;
+}
+.modal-overlay.open {
+  @apply flex;
+}
+.modal {
+  @apply bg-white-ghost rounded w-full max-h-[85vh] flex flex-col;
+}
+.modal-sm {
+  @apply max-w-sm;
+}
+.modal-md {
+  @apply max-w-md;
+}
+.modal-lg {
+  @apply max-w-lg;
+}
+.modal-header {
+  @apply flex items-center justify-between px-6 py-4 border-b border-black-onyx/10;
+}
+.modal-body {
+  @apply px-6 py-4 overflow-y-auto;
+}
+.modal-close {
+  @apply text-black-onyx/40 hover:text-black-onyx transition-colors cursor-pointer;
+}
+
+/* Docs preview button */
+.preview-btn {
+  @apply px-4 py-2 text-sm lg:text-base bg-black-onyx text-white-ghost rounded hover:bg-black-onyx/90 transition-colors cursor-pointer;
+}

@@ -1,0 +1,60 @@
+---
+interface Props {
+  id: string;
+  size?: "sm" | "md" | "lg";
+  open?: boolean;
+  class?: string;
+}
+
+const {
+  id,
+  size = "md",
+  open = false,
+  class: className = "",
+} = Astro.props;
+---
+
+<div id={id} class={`modal-overlay ${open ? "open" : ""}`} data-modal>
+  <div class={`modal modal-${size} ${className}`} role="dialog" aria-modal="true">
+    <div class="modal-header">
+      <slot name="header" />
+      <button class="modal-close" aria-label="Close">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256">
+          <path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path>
+        </svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <slot />
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll("[data-modal]").forEach((overlay) => {
+    const closeBtn = overlay.querySelector(".modal-close");
+
+    function openModal() {
+      overlay.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModal() {
+      overlay.classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    closeBtn?.addEventListener("click", closeModal);
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) closeModal();
+    });
+
+    overlay.querySelectorAll("[data-modal-close]").forEach((el) => {
+      el.addEventListener("click", closeModal);
+    });
+
+    document.querySelectorAll(`[data-modal-open="${overlay.id}"]`).forEach((el) => {
+      el.addEventListener("click", openModal);
+    });
+  });
+</script>
