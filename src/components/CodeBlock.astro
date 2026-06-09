@@ -67,7 +67,7 @@ const hasLines = showLineNumbers && codeLines.length > 1;
 
   {/* Code Preview */}
   <pre
-    class={`overflow-x-scroll bg-black-onyx/90 px-5 py-3 text-sm text-white-ghost font-mono ${fileName ? "rounded-b-lg rounded-t-none" : "rounded-lg"} ${showLineNumbers ? "line-numbers" : ""}`}>
+    class={`overflow-x-auto bg-black-onyx/90 px-5 py-3 text-sm text-white-ghost font-mono ${fileName ? "rounded-b-lg rounded-t-none" : "rounded-lg"} ${showLineNumbers ? "line-numbers" : ""}`}>
     <code class={`language-${language}`}>
       {codeLines.map((line, i) => (
         <span class={`code-line ${hasLines ? "line" : ""}`}>{line || <>&nbsp;</>}</span>
@@ -142,6 +142,10 @@ const hasLines = showLineNumbers && codeLines.length > 1;
 </script>
 
 <style is:global>
+  pre code {
+    display: block;
+  }
+
   .code-line {
     display: block;
   }
@@ -158,7 +162,7 @@ const hasLines = showLineNumbers && codeLines.length > 1;
   .line-numbers code .line::before {
     content: counter(line);
     display: inline-block;
-    width: 2em;
+    width: 1.5em;
     margin-right: 1em;
     text-align: right;
     color: #6b7280;

@@ -5,6 +5,9 @@ import Layout from "../../../layouts/Layout.astro";
 import MainButton from "../../../components/MainButton.astro";
 import CodeBlock from "../../../components/CodeBlock.astro";
 import MainButtonSource from "../../../components/MainButton.astro?raw";
+
+const usageCode = `<MainButton variant='primary'>Get Started</MainButton>
+<MainButton variant='outline' href='https://github.com'>View on GitHub</MainButton>`;
 ---
 
 <Layout title=`Button | ${siteData.brand}`>
@@ -41,12 +44,7 @@ import MainButtonSource from "../../../components/MainButton.astro?raw";
     <h3 class="section-subtitle">Usage</h3>
     <CodeBlock
       language="javascript"
-      code="        
-      <MainButton variant='primary'>Get Started</MainButton>
-      <MainButton variant='outline' href='https://github.com'
-          >View on GitHub</MainButton
-        >
-      "
+      code={usageCode}
       showLineNumbers={true}
     />
   </section>
