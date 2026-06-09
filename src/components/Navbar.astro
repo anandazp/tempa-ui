@@ -1,0 +1,142 @@
+---
+// src/components/Navbar.astro
+import { siteData } from "../data/site";
+---
+
+<header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+  <div class="max-w-6xl mx-auto px-5 py-3">
+    <div class="flex lg:justify-between items-center gap-5">
+      {/* Mobile Toggle Button */}
+      <button
+        id="menu-btn"
+        class="md:hidden w-6 h-6 flex flex-col justify-center items-center gap-1.5 focus:outline-none"
+        aria-label="Menu"
+      >
+        <span
+          id="menu-icon-line1"
+          class="w-5 h-0.5 bg-black-onyx transition-all duration-300"></span>
+        <span
+          id="menu-icon-line2"
+          class="w-5 h-0.5 bg-black-onyx transition-all duration-300"></span>
+      </button>
+      {/* Logo / Brand */}
+      <a href="/" class="text-lg font-medium">
+        {siteData.brand}
+      </a>
+
+      {/* Desktop Navigation */}
+      <nav class="hidden md:flex gap-6">
+        {
+          siteData.navigation.map((link) => (
+            <a href={link.href}>{link.label}</a>
+          ))
+        }
+      </nav>
+    </div>
+  </div>
+
+  {/* Mobile Sidebar */}
+  <div
+    id="mobile-sidebar"
+    class="fixed top-0 left-0 h-full w-64 bg-white shadow-xl z-50 transform -translate-x-full transition-transform duration-300 ease-in-out"
+  >
+    <div class="p-6">
+      {/* Close button inside sidebar (opsional) */}
+      <button id="sidebar-close" class="mb-8 text-gray-500 hover:text-gray-800">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          fill="currentColor"
+          viewBox="0 0 256 256"
+          class="text-black-onyx"
+          ><path
+            d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"
+          ></path></svg
+        >
+      </button>
+
+      <nav class="flex flex-col gap-4">
+        {
+          siteData.navigation.map((link) => (
+            <a href={link.href}>{link.label}</a>
+          ))
+        }
+      </nav>
+    </div>
+  </div>
+
+  {/* Overlay (gelap di belakang sidebar) */}
+  <div
+    id="overlay"
+    class="fixed inset-0 bg-black/50 z-40 hidden transition-opacity duration-300"
+  >
+  </div>
+</header>
+
+<script>
+  // Client-side JavaScript untuk toggle menu
+  const menuBtn = document.getElementById("menu-btn");
+  const sidebar = document.getElementById("mobile-sidebar");
+  const overlay = document.getElementById("overlay");
+  const sidebarClose = document.getElementById("sidebar-close");
+  const line1 = document.getElementById("menu-icon-line1");
+  const line2 = document.getElementById("menu-icon-line2");
+
+  let isOpen = false;
+
+  function openMenu() {
+    sidebar.classList.remove("-translate-x-full");
+    sidebar.classList.add("translate-x-0");
+    overlay.classList.remove("hidden");
+    document.body.style.overflow = "hidden"; // prevent scroll
+    isOpen = true;
+  }
+
+  function closeMenu() {
+    sidebar.classList.add("-translate-x-full");
+    sidebar.classList.remove("translate-x-0");
+    overlay.classList.add("hidden");
+    document.body.style.overflow = "";
+    isOpen = false;
+  }
+
+  function toggleMenu() {
+    if (isOpen) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  }
+
+  // Event listeners
+  menuBtn?.addEventListener("click", toggleMenu);
+  sidebarClose?.addEventListener("click", closeMenu);
+  overlay?.addEventListener("click", closeMenu);
+
+  // Tutup menu saat resize ke desktop (opsional)
+  window.addEventListener("resize", () => {
+    if (window.innerWidth >= 768 && isOpen) {
+      closeMenu();
+    }
+  });
+</script>
+
+<style is:global>
+  /* Animasi tambahan untuk icon */
+  .rotate-45 {
+    transform: rotate(45deg);
+  }
+
+  .-rotate-45 {
+    transform: rotate(-45deg);
+  }
+
+  .translate-y-2 {
+    transform: translateY(4px);
+  }
+
+  .-translate-y-2 {
+    transform: translateY(-4px);
+  }
+</style>

@@ -1,12 +1,154 @@
 ---
 interface Props {
   code: string;
+  language?: string;
+  showLineNumbers?: boolean;
+  fileName?: string;
 }
 
-const { code } = Astro.props;
+const {
+  code,
+  language = "html",
+  showLineNumbers = false,
+  fileName,
+} = Astro.props;
+
+// Fungsi untuk memecah kode menjadi baris-baris
+const codeLines = code.split("\n");
+const hasLines = showLineNumbers && codeLines.length > 1;
 ---
 
-<pre
-  class="overflow-x-auto rounded bg-black-onyx/90 p-4 text-sm text-white-ghost">
-  <code>{code}</code>
-</pre>
+<div class="code-block-wrapper overflow-scroll relative group my-4">
+  {/* Tombol Copy */}
+  <button
+    class="copy-code-btn absolute top-2 right-2 p-2 rounded-lg bg-black-onyx/50 hover:bg-black-onyx transition-all duration-200 z-10 backdrop-blur-sm"
+    aria-label="Copy code"
+  >
+    {/* Icon Default (Clipboard) */}
+    <svg
+      class="copy-icon-default w-5 h-5 text-white-ghost transition-all duration-200"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+      ></path>
+    </svg>
+
+    {/* Icon Success (Checkmark) - hidden by default */}
+    <svg
+      class="copy-icon-success w-5 h-5 text-green-400 hidden transition-all duration-200"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M5 13l4 4L19 7"></path>
+    </svg>
+  </button>
+
+  {/* Code Preview */}
+  <pre
+    class={`overflow-x-auto rounded-lg bg-black-onyx/90 px-5 py-3 text-sm text-white-ghost font-mono ${showLineNumbers ? "line-numbers" : ""}`}>
+  <p class="font-medium">{fileName}</p>
+  <code class={`language-${language}`}>
+      {code}
+    </code>
+
+    <!-- Kode dengan line number akan ditambahkan disini -->
+  </pre>
+</div>
+
+<script>
+  // ✅ Support multiple CodeBlock dalam satu halaman
+  // Ambil semua tombol copy yang ada di halaman
+  const copyButtons = document.querySelectorAll(".copy-code-btn");
+
+  // Fungsi untuk menampilkan notifikasi sukses pada button tertentu
+  function showCopySuccess(button: HTMLElement) {
+    const defaultIcon = button.querySelector(".copy-icon-default");
+    const successIcon = button.querySelector(".copy-icon-success");
+
+    if (!defaultIcon || !successIcon) return;
+
+    // Sembunyikan icon default, tampilkan icon success
+    defaultIcon.classList.add("hidden");
+    successIcon.classList.remove("hidden");
+
+    // Tambahkan efek visual pada button
+    button.classList.add("bg-green-600/50");
+
+    // Kembalikan ke icon default setelah 2 detik
+    setTimeout(() => {
+      defaultIcon.classList.remove("hidden");
+      successIcon.classList.add("hidden");
+      button.classList.remove("bg-green-600/50");
+    }, 2000);
+  }
+
+  // Loop semua tombol copy
+  copyButtons.forEach((button) => {
+    button.addEventListener("click", async () => {
+      // Cari wrapper terdekat
+      const wrapper = button.closest(".code-block-wrapper");
+      if (!wrapper) return;
+
+      // Ambil element <code> di dalam wrapper
+      const codeElement = wrapper.querySelector("code");
+      if (!codeElement) return;
+
+      // Ambil teks dari <code>
+      const codeToCopy = codeElement.textContent || "";
+
+      try {
+        // Copy ke clipboard
+        await navigator.clipboard.writeText(codeToCopy);
+
+        // Tampilkan efek sukses
+        showCopySuccess(button);
+      } catch (err) {
+        console.error("Gagal copy code:", err);
+
+        // Optional: Tampilkan pesan error (bisa pakai tooltip atau alert)
+        const errorMsg = document.createElement("span");
+        errorMsg.textContent = "Gagal copy!";
+        errorMsg.className =
+          "absolute -top-8 right-0 bg-red-500 text-white text-xs px-2 py-1 rounded";
+        button.appendChild(errorMsg);
+
+        setTimeout(() => {
+          errorMsg.remove();
+        }, 1500);
+      }
+    });
+  });
+</script>
+
+<style is:global>
+  /* Optional: Styling untuk line numbers jika dibutuhkan */
+  .line-numbers code {
+    counter-reset: line;
+  }
+
+  .line-numbers code .line {
+    counter-increment: line;
+  }
+
+  .line-numbers code .line::before {
+    content: counter(line);
+    display: inline-block;
+    width: 2em;
+    margin-right: 1em;
+    text-align: right;
+    color: #6b7280;
+  }
+</style>

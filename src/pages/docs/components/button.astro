@@ -7,11 +7,47 @@ import CodeBlock from "../../../components/CodeBlock.astro";
 import MainButtonSource from "../../../components/MainButton.astro?raw";
 ---
 
-<Layout title={siteData.brand}>
-  <h1 class="text-2xl font-semibold">{siteData.brand}</h1>
-  <p class="font-light">Test</p>
-  <MainButton>Get Started</MainButton>
-  <MainButton variant="outline">View Docs</MainButton>
+<Layout title=`Button | ${siteData.brand}`>
+  <section>
+    <div class="space-y-1">
+      <p class="text-sm">
+        Docs / Components / <span class="font-medium">Button</span>
+      </p>
+      <h2 class="section-title">Button</h2>
+      <p class="section-description">Button for cta, outline, and link.</p>
+    </div>
 
-  <CodeBlock code={MainButtonSource} />
+    <h3 class="section-subtitle">Code</h3>
+    <CodeBlock
+      code={MainButtonSource}
+      showLineNumbers={true}
+      fileName="components/MainButton.astro"
+    />
+
+    <h3 class="section-subtitle">Preview</h3>
+    <div class="flex flex-col gap-5">
+      <div class="preview-wrapper">
+        <h4 class="preview-heading">Primary Button</h4>
+        <MainButton>Get Started</MainButton>
+      </div>
+      <div class="preview-wrapper">
+        <h4 class="preview-heading">Outline Button</h4>
+        <MainButton variant="outline" href="https://github.com"
+          >View on GitHub</MainButton
+        >
+      </div>
+    </div>
+
+    <h3 class="section-subtitle">Usage</h3>
+    <CodeBlock
+      language="javascript"
+      code="        
+      <MainButton variant='primary'>Get Started</MainButton>
+      <MainButton variant='outline' href='https://github.com'
+          >View on GitHub</MainButton
+        >
+      "
+      showLineNumbers={true}
+    />
+  </section>
 </Layout>

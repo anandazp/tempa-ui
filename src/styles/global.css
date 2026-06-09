@@ -5,7 +5,7 @@
   --color-white-ghost: #fbf9ff;
   --color-blue-bell: #3e92cc;
 
-  --font-stack-sans: "Stack Sans Text", sans-serif;
+  --font-dm-sans: "DM Sans", sans-serif;
 
   --text-xs: 0.64rem; /* 10px */
   --text-sm: 0.8rem; /* 13px */
@@ -19,12 +19,7 @@
 }
 
 body {
-  @apply font-stack-sans bg-white-ghost;
-}
-
-a,
-p {
-  @apply font-normal;
+  @apply font-dm-sans bg-white-ghost;
 }
 
 h1,
@@ -33,5 +28,25 @@ h3,
 h4,
 h5,
 h6 {
-  @apply font-medium;
+  @apply font-medium tracking-tight text-black-onyx;
+}
+
+main section {
+  @apply mx-auto grid gap-3 px-5 py-10;
+}
+
+.section-title {
+  @apply text-xl font-semibold;
+}
+
+.section-subtitle {
+  @apply text-lg mt-3;
+}
+
+.section-description {
+  @apply text-black-onyx/80;
+}
+
+.preview-wrapper {
+  @apply space-y-2;
 }
