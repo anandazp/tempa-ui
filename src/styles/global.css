@@ -50,3 +50,37 @@ main section {
 .preview-wrapper {
   @apply space-y-2;
 }
+
+table tbody {
+  @apply font-mono;
+}
+
+table.props-table {
+  @apply w-full text-sm text-left border-collapse;
+}
+
+.tr-head {
+  @apply border-b border-black-onyx/20;
+}
+.tr-body {
+  @apply border-b border-black-onyx/10;
+}
+
+.th-cell {
+  @apply py-2 pr-4 font-medium;
+}
+.th-desc {
+  @apply py-2 font-medium;
+}
+.td-cell {
+  @apply py-2 pr-4;
+}
+.td-desc {
+  @apply py-2;
+}
+.prop-name {
+  @apply font-mono text-blue-bell;
+}
+.prop-type {
+  @apply font-mono;
+}

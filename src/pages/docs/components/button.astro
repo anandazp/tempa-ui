@@ -42,10 +42,51 @@ const usageCode = `<MainButton variant='primary'>Get Started</MainButton>
     </div>
 
     <h3 class="section-subtitle">Usage</h3>
-    <CodeBlock
-      language="javascript"
-      code={usageCode}
-      showLineNumbers={true}
-    />
+    <CodeBlock language="javascript" code={usageCode} showLineNumbers={true} />
+
+    <h3 class="section-subtitle">Props</h3>
+    <div class="overflow-x-auto">
+      <table class="props-table">
+        <thead>
+          <tr class="tr-head">
+            <th class="th-cell">Prop</th>
+            <th class="th-cell">Type</th>
+            <th class="th-cell">Default</th>
+            <th class="th-desc">Description</th>
+          </tr>
+        </thead>
+        <tbody class="text-black-onyx/80">
+          <tr class="tr-body">
+            <td class="td-cell prop-name">code</td>
+            <td class="td-cell prop-type">string</td>
+            <td class="td-cell">—</td>
+            <td class="td-desc">Source code to display.</td>
+          </tr>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">language</td>
+            <td class="td-cell prop-type">string</td>
+            <td class="td-cell prop-type">"html"</td>
+            <td class="td-desc">Language for syntax highlighting.</td>
+          </tr>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">showLineNumbers</td>
+            <td class="td-cell prop-type">boolean</td>
+            <td class="td-cell prop-type">false</td>
+            <td class="td-desc">Toggle line numbers.</td>
+          </tr>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">fileName</td>
+            <td class="td-cell prop-type">string</td>
+            <td class="td-cell">—</td>
+            <td class="td-desc">Optional filename header.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 </Layout>
+
+<style is:global>
+ 
+ 
+</style>
