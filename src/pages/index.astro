@@ -5,14 +5,16 @@ import { siteData } from "../data/site";
 ---
 
 <Layout title={siteData.brand}>
-  <section id="hero" class="max-w-6xlbg-white-ghost">
+  <section id="hero" class="bg-white-ghost">
     <h1 class="text-3xl font-semibold">{siteData.tagline}</h1>
     <p>{siteData.description}</p>
-    <div class="grid gap-3">
-      <Button href="/docs/components/button" class="w-full"
-        >Browse Components</Button
-      >
-      <Button href="/" variant="outline">View Docs</Button>
+    <div class="grid gap-5">
+      <Button href="/docs/components" class="w-full">Browse Components</Button>
+      <Button href="/docs" variant="outline">View Docs</Button>
     </div>
+  </section>
+
+  <section id="why-us" class="bg-white-ghost">
+    <h2>Built Faster with Confident</h2>
   </section>
 </Layout>

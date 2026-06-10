@@ -32,7 +32,13 @@ h6 {
 }
 
 main section {
-  @apply mx-auto grid gap-3;
+  @apply mx-auto grid gap-5;
+}
+
+#hero,
+#why-us,
+footer {
+  @apply py-10;
 }
 
 .section-title {
@@ -144,7 +150,7 @@ table.props-table {
 
 /* Docs sidebar */
 .docs-sidebar-menu {
-  @apply block px-3 py-1 text-black-onyx font-medium tracking-tight;
+  @apply text-lg lg:text-base block px-3 py-1 text-black-onyx font-medium tracking-tight;
 }
 
 .docs-sidebar-link {

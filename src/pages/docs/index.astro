@@ -1,0 +1,40 @@
+---
+import { siteData } from "../../data/site";
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+---
+
+<DocsLayout title={`Introduction | ${siteData.brand}`}>
+  <section>
+    <div class="space-y-1">
+      <Breadcrumbs
+        items={[{ label: "Docs", href: "/docs" }, { label: "Introduction" }]}
+      />
+      <h2 class="section-title">Introduction</h2>
+      <p class="section-description">
+        Tempa UI is a collection of ready-to-use components for websites.
+      </p>
+
+      <h3 class="section-subtitle">A short story</h3>
+      <p class="section-description mb-10">
+        I was frustrated with creating repetitive components for multiple
+        projects. There are tons of UI components out there, but few that use
+        Astro alone. Here, I'm trying to solve that problem by using Astro
+        components with Tailwind CSS without the help of JavaScript frameworks
+        like React, Vue, Svelte, or others.
+      </p>
+
+      <p class="section-description mb-2">
+        I hope this small project will help you.
+      </p>
+
+      <p class="section-description">
+        Created by <a
+          href="https://anandazp.netlify.app/"
+          class="font-medium underline text-black-onyx"
+          >Ananda Zulvansyah Putra</a
+        > and his AI friends :)
+      </p>
+    </div>
+  </section>
+</DocsLayout>

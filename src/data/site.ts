@@ -8,6 +8,7 @@ export const siteData = {
     { label: "Components", href: "/components" },
   ],
   sideNavigationDocs: [
+    { label: "Introduction", href: "/docs" },
     { label: "Installation", href: "/components" },
     { label: "Components", href: "/components" },
   ],
