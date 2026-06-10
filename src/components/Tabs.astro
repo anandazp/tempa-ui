@@ -1,0 +1,59 @@
+---
+interface Tab {
+  label: string;
+}
+
+interface Props {
+  tabs: Tab[];
+  activeIndex?: number;
+  class?: string;
+}
+
+const {
+  tabs,
+  activeIndex = 0,
+  class: className = "",
+} = Astro.props;
+---
+
+<div class={`tabs ${className}`}>
+  <div class="tab-list" role="tablist">
+    {tabs.map((tab, i) => (
+      <button
+        class={`tab-btn ${i === activeIndex ? "tab-btn-active" : ""}`}
+        role="tab"
+        aria-selected={i === activeIndex}
+      >
+        {tab.label}
+      </button>
+    ))}
+  </div>
+  <div class="tab-panels">
+    <slot />
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll(".tabs").forEach((tabs) => {
+    const tabButtons = tabs.querySelectorAll(".tab-btn");
+    const panels = tabs.querySelectorAll("[data-tab-panel]");
+
+    function activateTab(index) {
+      tabButtons.forEach((btn, i) => {
+        btn.classList.toggle("tab-btn-active", i === index);
+        btn.setAttribute("aria-selected", i === index);
+      });
+      panels.forEach((panel, i) => {
+        panel.classList.toggle("active", i === index);
+      });
+    }
+
+    const activeBtn = tabs.querySelector(".tab-btn-active");
+    const initialIndex = activeBtn ? Array.from(tabButtons).indexOf(activeBtn) : 0;
+    activateTab(initialIndex);
+
+    tabButtons.forEach((btn, i) => {
+      btn.addEventListener("click", () => activateTab(i));
+    });
+  });
+</script>

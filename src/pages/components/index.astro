@@ -1,0 +1,86 @@
+---
+import { siteData } from "../../data/site";
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+---
+
+<DocsLayout title={`Components | ${siteData.brand}`}>
+  <section>
+    <div class="space-y-1">
+      <Breadcrumbs
+        items={[
+          { label: "Docs", href: "/docs" },
+          { label: "Components" },
+        ]}
+      />
+      <h2 class="section-title">Components</h2>
+      <p class="section-description">All available UI components.</p>
+    </div>
+
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-6">
+      <a
+        href="/docs/components/button"
+        class="card card-bordered card-shadowed block p-4 hover:border-blue-bell transition-colors"
+      >
+        <h3 class="font-semibold text-lg">Button</h3>
+        <p class="text-sm text-black-onyx/80 mt-1">
+          Button for cta, outline, and link.
+        </p>
+      </a>
+      <a
+        href="/docs/components/sidebar"
+        class="card card-bordered card-shadowed block p-4 hover:border-blue-bell transition-colors"
+      >
+        <h3 class="font-semibold text-lg">Sidebar</h3>
+        <p class="text-sm text-black-onyx/80 mt-1">
+          Collapsible sidebar navigation.
+        </p>
+      </a>
+      <a
+        href="/docs/components/tabs"
+        class="card card-bordered card-shadowed block p-4 hover:border-blue-bell transition-colors"
+      >
+        <h3 class="font-semibold text-lg">Tabs</h3>
+        <p class="text-sm text-black-onyx/80 mt-1">
+          Tabbed content panels.
+        </p>
+      </a>
+      <a
+        href="/docs/components/breadcrumbs"
+        class="card card-bordered card-shadowed block p-4 hover:border-blue-bell transition-colors"
+      >
+        <h3 class="font-semibold text-lg">Breadcrumbs</h3>
+        <p class="text-sm text-black-onyx/80 mt-1">
+          Navigation breadcrumb trail.
+        </p>
+      </a>
+      <a
+        href="/docs/components/alert"
+        class="card card-bordered card-shadowed block p-4 hover:border-blue-bell transition-colors"
+      >
+        <h3 class="font-semibold text-lg">Alert</h3>
+        <p class="text-sm text-black-onyx/80 mt-1">
+          Alert messages with variants.
+        </p>
+      </a>
+      <a
+        href="/docs/components/card"
+        class="card card-bordered card-shadowed block p-4 hover:border-blue-bell transition-colors"
+      >
+        <h3 class="font-semibold text-lg">Card</h3>
+        <p class="text-sm text-black-onyx/80 mt-1">
+          Content card with variants.
+        </p>
+      </a>
+      <a
+        href="/docs/components/modal"
+        class="card card-bordered card-shadowed block p-4 hover:border-blue-bell transition-colors"
+      >
+        <h3 class="font-semibold text-lg">Modal</h3>
+        <p class="text-sm text-black-onyx/80 mt-1">
+          Modal dialog overlay.
+        </p>
+      </a>
+    </div>
+  </section>
+</DocsLayout>

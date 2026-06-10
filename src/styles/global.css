@@ -1,1 +1,238 @@
 @import "tailwindcss";
+
+@theme {
+  --color-black-onyx: #151515;
+  --color-white-ghost: #fbf9ff;
+  --color-blue-bell: #3e92cc;
+
+  --font-dm-sans: "DM Sans", sans-serif;
+
+  --text-xs: 0.64rem; /* 10px */
+  --text-sm: 0.8rem; /* 13px */
+  --text-base: 1rem; /* 16px */
+  --text-lg: 1.25rem; /* 20px */
+  --text-xl: 1.563rem; /* 25px */
+  --text-2xl: 1.953rem; /* 31px */
+  --text-3xl: 2.441rem; /* 39px */
+  --text-4xl: 3.052rem; /* 49px */
+  --text-5xl: 3.815rem; /* 61px */
+}
+
+body {
+  @apply font-dm-sans bg-white-ghost;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-medium tracking-tight text-black-onyx;
+}
+
+main section {
+  @apply mx-auto grid gap-5;
+}
+
+#hero,
+#why-us,
+footer {
+  @apply py-10;
+}
+
+.section-title {
+  @apply text-xl lg:text-2xl font-semibold mt-3;
+}
+
+.section-subtitle {
+  @apply text-lg mt-3;
+}
+
+.section-description {
+  @apply text-black-onyx/80;
+}
+
+.preview-wrapper {
+  @apply space-y-2;
+}
+
+table tbody {
+  @apply font-mono;
+}
+
+table.props-table {
+  @apply w-full text-sm text-left border-collapse;
+}
+
+.tr-head {
+  @apply border-b border-black-onyx/20;
+}
+.tr-body {
+  @apply border-b border-black-onyx/10;
+}
+
+.th-cell {
+  @apply py-2 pr-4 font-medium;
+}
+.th-desc {
+  @apply py-2 font-medium;
+}
+.td-cell {
+  @apply py-2 pr-4;
+}
+.td-desc {
+  @apply py-2;
+}
+.prop-name {
+  @apply font-mono text-blue-bell;
+}
+.prop-type {
+  @apply font-mono;
+}
+
+/* Sidebar component */
+.sidebar {
+  @apply flex flex-col bg-black-onyx text-white-ghost h-full w-64 transition-all duration-300;
+}
+.sidebar.collapsed {
+  @apply w-16;
+}
+.sidebar-header {
+  @apply flex items-center justify-between px-4 py-4 border-b border-white-ghost/10;
+}
+.sidebar-link {
+  @apply flex items-center gap-3 px-3 py-2 rounded hover:bg-white-ghost/10 transition-colors;
+}
+.sidebar-toggle-btn {
+  @apply p-1 rounded hover:bg-white-ghost/10 transition-colors;
+}
+.sidebar.collapsed .sidebar-label {
+  @apply hidden;
+}
+
+/* Tabs component */
+.tab-list {
+  @apply flex border-b border-black-onyx/10;
+}
+.tab-btn {
+  @apply px-4 py-2 text-sm text-black-onyx/60 hover:text-black-onyx transition-colors;
+}
+.tab-btn-active {
+  @apply text-black-onyx font-medium border-b-2 border-black-onyx;
+}
+.tab-panels {
+  @apply mt-4;
+}
+.tab-panels > [data-tab-panel] {
+  @apply hidden;
+}
+.tab-panels > [data-tab-panel].active {
+  @apply block;
+}
+
+/* Breadcrumbs component */
+.breadcrumbs ol {
+  @apply flex items-center flex-wrap gap-2;
+}
+.breadcrumbs li {
+  @apply flex items-center gap-2;
+}
+.breadcrumb-separator {
+  @apply text-black-onyx/30 text-sm;
+}
+.breadcrumb-link {
+  @apply text-sm text-black-onyx/60 hover:text-black-onyx transition-colors;
+}
+.breadcrumb-current {
+  @apply text-sm text-black-onyx font-medium;
+}
+
+/* Docs sidebar */
+.docs-sidebar-menu {
+  @apply text-lg lg:text-base block px-3 py-1 text-black-onyx font-medium tracking-tight;
+}
+
+.docs-sidebar-link {
+  @apply block px-3 py-1 text-sm text-black-onyx/60 rounded hover:bg-black-onyx/5 hover:text-black-onyx transition-colors;
+}
+
+/* Alert component */
+.alert {
+  @apply relative flex items-start gap-3 px-4 py-3 rounded;
+}
+.alert-solid {
+  @apply bg-black-onyx text-white-ghost;
+}
+.alert-left-bordered {
+  @apply bg-black-onyx/5 border-l-4 border-black-onyx text-black-onyx;
+}
+.alert-content {
+  @apply flex-1 text-sm;
+}
+.alert-close {
+  @apply shrink-0 text-current/60 hover:text-current transition-colors;
+}
+
+/* Card component */
+.card {
+  @apply bg-white-ghost rounded overflow-hidden;
+}
+.card-vertical {
+  @apply flex flex-col;
+}
+.card-horizontal {
+  @apply flex flex-col md:flex-row;
+}
+.card-bordered {
+  @apply border-2 border-black-onyx/20;
+}
+.card-shadowed {
+  @apply shadow-lg shadow-black-onyx/10;
+}
+.card-image {
+  @apply bg-black-onyx/10;
+}
+.card-image img {
+  @apply w-full h-full object-cover;
+}
+.card-horizontal .card-image {
+  @apply md:w-48 md:shrink-0;
+}
+.card-body {
+  @apply p-4;
+}
+
+/* Modal component */
+.modal-overlay {
+  @apply fixed inset-0 z-50 bg-black-onyx/50 flex items-center justify-center p-4 hidden;
+}
+.modal-overlay.open {
+  @apply flex;
+}
+.modal {
+  @apply bg-white-ghost rounded w-full max-h-[85vh] flex flex-col;
+}
+.modal-sm {
+  @apply max-w-sm;
+}
+.modal-md {
+  @apply max-w-md;
+}
+.modal-lg {
+  @apply max-w-lg;
+}
+.modal-header {
+  @apply flex items-center justify-between px-6 py-4 border-b border-black-onyx/10;
+}
+.modal-body {
+  @apply px-6 py-4 overflow-y-auto;
+}
+.modal-close {
+  @apply text-black-onyx/40 hover:text-black-onyx transition-colors cursor-pointer;
+}
+
+/* Docs preview button */
+.preview-btn {
+  @apply px-4 py-2 text-sm lg:text-base bg-black-onyx text-white-ghost rounded hover:bg-black-onyx/90 transition-colors cursor-pointer;
+}

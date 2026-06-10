@@ -1,0 +1,114 @@
+---
+import { siteData } from "../../../data/site";
+
+import DocsLayout from "../../../layouts/DocsLayout.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import Modal from "../../../components/Modal.astro";
+import CodeBlock from "../../../components/CodeBlock.astro";
+import ModalSource from "../../../components/Modal.astro?raw";
+
+const usageCode = `<Modal id="my-modal" size="md">
+  <h3 slot="header">Modal Title</h3>
+  <p>Modal content goes here.</p>
+</Modal>
+
+<button data-modal-open="my-modal">
+  Open Modal
+</button>`;
+---
+
+<DocsLayout title=`Modal | ${siteData.brand}`>
+  <section>
+    <div class="space-y-1">
+      <Breadcrumbs
+        items={[
+          { label: "Docs", href: "/docs" },
+          { label: "Components", href: "/components" },
+          { label: "Modal" },
+        ]}
+      />
+      <h2 class="section-title">Modal</h2>
+      <p class="section-description">Dialog overlay with configurable sizes.</p>
+    </div>
+
+    <h3 class="section-subtitle">Code</h3>
+    <CodeBlock
+      code={ModalSource}
+      showLineNumbers={true}
+      fileName="components/Modal.astro"
+    />
+
+    <h3 class="section-subtitle">Preview</h3>
+    <div class="flex flex-col gap-5">
+      <div class="preview-wrapper">
+        <h4 class="preview-heading">Small</h4>
+        <button class="preview-btn" data-modal-open="modal-sm">Open Small Modal</button>
+        <Modal id="modal-sm" size="sm">
+          <h3 slot="header" class="font-medium">Small Modal</h3>
+          <p class="text-sm text-black-onyx/60">Compact modal for quick actions.</p>
+        </Modal>
+      </div>
+      <div class="preview-wrapper">
+        <h4 class="preview-heading">Medium</h4>
+        <button class="preview-btn" data-modal-open="modal-md">Open Medium Modal</button>
+        <Modal id="modal-md" size="md">
+          <h3 slot="header" class="font-medium">Medium Modal</h3>
+          <p class="text-sm text-black-onyx/60">Standard modal for most use cases.</p>
+        </Modal>
+      </div>
+      <div class="preview-wrapper">
+        <h4 class="preview-heading">Large</h4>
+        <button class="preview-btn" data-modal-open="modal-lg">Open Large Modal</button>
+        <Modal id="modal-lg" size="lg">
+          <h3 slot="header" class="font-medium">Large Modal</h3>
+          <p class="text-sm text-black-onyx/60">Spacious modal for detailed content.</p>
+        </Modal>
+      </div>
+    </div>
+
+    <h3 class="section-subtitle">Usage</h3>
+    <p class="text-sm text-black-onyx/80 mb-2">Use <code class="font-mono text-blue-bell">data-modal-open="modal-id"</code> on any button to open the modal. Clicking the overlay or close button dismisses it.</p>
+    <CodeBlock language="javascript" code={usageCode} showLineNumbers={true} />
+
+    <h3 class="section-subtitle">Props</h3>
+    <div class="overflow-x-auto">
+      <table class="props-table">
+        <thead>
+          <tr class="tr-head">
+            <th class="th-cell">Prop</th>
+            <th class="th-cell">Type</th>
+            <th class="th-cell">Default</th>
+            <th class="th-desc">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">id</td>
+            <td class="td-cell prop-type">string</td>
+            <td class="td-cell">—</td>
+            <td class="td-desc">Unique modal identifier for open/close targeting.</td>
+          </tr>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">size</td>
+            <td class="td-cell prop-type">"sm" | "md" | "lg"</td>
+            <td class="td-cell prop-type">"md"</td>
+            <td class="td-desc">Modal width variant.</td>
+          </tr>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">open</td>
+            <td class="td-cell prop-type">boolean</td>
+            <td class="td-cell prop-type">false</td>
+            <td class="td-desc">Initial open state.</td>
+          </tr>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">class</td>
+            <td class="td-cell prop-type">string</td>
+            <td class="td-cell">—</td>
+            <td class="td-desc">Additional CSS classes.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</DocsLayout>
+

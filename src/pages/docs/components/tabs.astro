@@ -1,0 +1,95 @@
+---
+import { siteData } from "../../../data/site";
+
+import DocsLayout from "../../../layouts/DocsLayout.astro";
+import Tabs from "../../../components/Tabs.astro";
+import CodeBlock from "../../../components/CodeBlock.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import TabsSource from "../../../components/Tabs.astro?raw";
+
+const usageCode = `<Tabs tabs={[{ label: "Tab 1" }, { label: "Tab 2" }]}>
+  <div data-tab-panel="0">
+    <p>Content for tab 1.</p>
+  </div>
+  <div data-tab-panel="1">
+    <p>Content for tab 2.</p>
+  </div>
+</Tabs>`;
+---
+
+<DocsLayout title=`Tabs | ${siteData.brand}`>
+  <section>
+    <div class="space-y-1">
+      <Breadcrumbs
+        items={[
+          { label: "Docs", href: "/docs" },
+          { label: "Components", href: "/components" },
+          { label: "Tabs" },
+        ]}
+      />
+      <h2 class="section-title">Tabs</h2>
+      <p class="section-description">Switchable tabbed content panels.</p>
+    </div>
+
+    <h3 class="section-subtitle">Code</h3>
+    <CodeBlock
+      code={TabsSource}
+      showLineNumbers={true}
+      fileName="components/Tabs.astro"
+    />
+
+    <h3 class="section-subtitle">Preview</h3>
+    <div class="flex flex-col gap-5">
+      <div class="preview-wrapper">
+        <Tabs tabs={[{ label: "Preview" }, { label: "Details" }, { label: "Settings" }]}>
+          <div data-tab-panel="0">
+            <p class="text-black-onyx/80">This is the preview panel with some sample content.</p>
+          </div>
+          <div data-tab-panel="1">
+            <p class="text-black-onyx/80">Details panel — additional information goes here.</p>
+          </div>
+          <div data-tab-panel="2">
+            <p class="text-black-onyx/80">Settings panel — configure your preferences.</p>
+          </div>
+        </Tabs>
+      </div>
+    </div>
+
+    <h3 class="section-subtitle">Usage</h3>
+    <CodeBlock language="javascript" code={usageCode} showLineNumbers={true} />
+
+    <h3 class="section-subtitle">Props</h3>
+    <div class="overflow-x-auto">
+      <table class="props-table">
+        <thead>
+          <tr class="tr-head">
+            <th class="th-cell">Prop</th>
+            <th class="th-cell">Type</th>
+            <th class="th-cell">Default</th>
+            <th class="th-desc">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">tabs</td>
+            <td class="td-cell prop-type">Tab[]</td>
+            <td class="td-cell">—</td>
+            <td class="td-desc">Array of tabs with label.</td>
+          </tr>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">activeIndex</td>
+            <td class="td-cell prop-type">number</td>
+            <td class="td-cell prop-type">0</td>
+            <td class="td-desc">Initially active tab index.</td>
+          </tr>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">class</td>
+            <td class="td-cell prop-type">string</td>
+            <td class="td-cell">—</td>
+            <td class="td-desc">Additional CSS classes.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</DocsLayout>
