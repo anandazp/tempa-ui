@@ -11,4 +11,12 @@ export const siteData = {
     { label: "Installation", href: "/components" },
     { label: "Components", href: "/components" },
   ],
+  componentsList: [
+    { label: "Button", href: "/button" },
+    { label: "Sidebar", href: "/sidebar" },
+    { label: "Tabs", href: "/tabs" },
+    { label: "Breadcrumbs", href: "/breadcrumbs" },
+    { label: "Alert", href: "/alert" },
+    { label: "Modal", href: "/modal" },
+  ],
 };

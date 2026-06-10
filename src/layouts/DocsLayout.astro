@@ -43,37 +43,11 @@ const { title } = Astro.props;
                 </li>
               ))
             }
-            <li>
-              <a href="/docs/components/button" class="docs-sidebar-link"
-                >Button</a
-              >
-            </li>
-            <li>
-              <a href="/docs/components/sidebar" class="docs-sidebar-link"
-                >Sidebar</a
-              >
-            </li>
-            <li>
-              <a href="/docs/components/tabs" class="docs-sidebar-link">Tabs</a>
-            </li>
-            <li>
-              <a href="/docs/components/breadcrumbs" class="docs-sidebar-link"
-                >Breadcrumbs</a
-              >
-            </li>
-            <li>
-              <a href="/docs/components/alert" class="docs-sidebar-link"
-                >Alert</a
-              >
-            </li>
-            <li>
-              <a href="/docs/components/card" class="docs-sidebar-link">Card</a>
-            </li>
-            <li>
-              <a href="/docs/components/modal" class="docs-sidebar-link"
-                >Modal</a
-              >
-            </li>
+            {
+              siteData.componentsList.map((component) => (
+                <a href=`/docs/components${component.href}` class="docs-sidebar-link">{component.label}</a>
+              ))
+            }
           </ul>
         </nav>
       </aside>
@@ -93,10 +67,10 @@ const { title } = Astro.props;
         class="toc fixed right-0 top-16 h-[calc(100vh-4rem)] w-64 overflow-y-auto px-4 py-6 hidden lg:block"
       >
         <nav>
-          <h3 class="text-sm font-semibold capitalize tracking-wider mb-3">
+          <h3 class="text-sm font-semibold capitalize mb-3">
             On this page
           </h3>
-          <ul id="toc-list" class="text-sm space-y-2"></ul>
+          <ul id="toc-list" class="text-sm space-y-3"></ul>
         </nav>
       </section>
     </div>
