@@ -62,24 +62,120 @@ const { title } = Astro.props;
               >
             </li>
             <li>
-              <a href="/docs/components/alert" class="docs-sidebar-link">Alert</a>
+              <a href="/docs/components/alert" class="docs-sidebar-link"
+                >Alert</a
+              >
             </li>
             <li>
               <a href="/docs/components/card" class="docs-sidebar-link">Card</a>
             </li>
             <li>
-              <a href="/docs/components/modal" class="docs-sidebar-link">Modal</a>
+              <a href="/docs/components/modal" class="docs-sidebar-link"
+                >Modal</a
+              >
             </li>
           </ul>
         </nav>
       </aside>
-      <main class="flex-1 lg:ml-56">
-        <slot />
+      <!-- Main content area -->
+      <main class="flex-1 lg:ml-56 lg:mr-64">
+        <!-- Docs page content injected via slot -->
+        <section class="content w-full px-6 py-10">
+          <slot />
+        </section>
       </main>
+
+      <!--
+        Table of Contents — fixed on the right side on desktop (lg+).
+        Populated client-side by scanning headings inside .content.
+      -->
+      <section
+        class="toc fixed right-0 top-16 h-[calc(100vh-4rem)] w-64 overflow-y-auto px-4 py-6 hidden lg:block"
+      >
+        <nav>
+          <h3 class="text-sm font-semibold capitalize tracking-wider mb-3">
+            On this page
+          </h3>
+          <ul id="toc-list" class="text-sm space-y-2"></ul>
+        </nav>
+      </section>
     </div>
 
     <footer>
       <h6>{title}</h6>
     </footer>
+
+    <script>
+      // --- Table of Contents auto-generator ---
+      // Flow:
+      //   1. Scan all h2/h3/h4 elements inside .content
+      //   2. Assign an id to each heading if missing (for anchor linking)
+      //   3. Build a nested <ul> tree mirroring the heading hierarchy
+      //   4. Append the tree into #toc-list
+      (function () {
+        var content = document.querySelector(".content");
+        var list = document.getElementById("toc-list");
+        if (!content || !list) return;
+
+        var headingEls = content.querySelectorAll("h2, h3, h4");
+        if (headingEls.length === 0) return;
+
+        var rootUl = document.createElement("ul");
+        rootUl.className = "space-y-2";
+        // stack tracks the current nesting path: { level, ul }
+        var stack = [{ level: 0, ul: rootUl }];
+        // lastLiAtLevel mirrors stack: the last <li> created at each depth
+        var lastLiAtLevel = [null];
+
+        for (var i = 0; i < headingEls.length; i++) {
+          var h = headingEls[i];
+          if (!h.id) {
+            h.id = h.textContent
+              .trim()
+              .toLowerCase()
+              .replace(/\s+/g, "-")
+              .replace(/[^a-z0-9-]/g, "");
+          }
+          var level = parseInt(h.tagName[1]);
+
+          // Pop back when the current heading is shallower than the open <ul>
+          while (stack.length > 1 && stack[stack.length - 1].level > level) {
+            stack.pop();
+            lastLiAtLevel.pop();
+          }
+
+          var top = stack[stack.length - 1];
+
+          // Going deeper: nest a new <ul> under the previous <li>
+          if (level > top.level) {
+            var parentLi = lastLiAtLevel[lastLiAtLevel.length - 1];
+            if (parentLi) {
+              var subUl = document.createElement("ul");
+              subUl.className =
+                "ml-3 mt-1 space-y-1 border-l border-black-onyx/10 pl-3";
+              parentLi.appendChild(subUl);
+              stack.push({ level: level, ul: subUl });
+              lastLiAtLevel.push(null);
+              top = stack[stack.length - 1];
+            }
+            // parentLi is null only for the very first heading; it is added
+            // directly to rootUl below without nesting.
+          }
+
+          var li = document.createElement("li");
+          var a = document.createElement("a");
+          a.href = "#" + h.id;
+          a.textContent = h.textContent.trim();
+          a.className =
+            "text-black-onyx/60 hover:text-black-onyx transition-colors no-underline";
+          li.appendChild(a);
+
+          top.ul.appendChild(li);
+          lastLiAtLevel[lastLiAtLevel.length - 1] = li;
+        }
+
+        list.appendChild(rootUl);
+      })();
+    </script>
   </body>
 </html>
