@@ -178,35 +178,35 @@ import { searchIndex } from "../data/search";
 <script>
   // --- Mobile menu toggle ---
   (function () {
-    var menuBtn = document.getElementById("menu-btn");
-    var sidebar = document.getElementById("mobile-sidebar");
-    var overlay = document.getElementById("overlay");
-    var sidebarClose = document.getElementById("sidebar-close");
+    const menuBtn = document.getElementById("menu-btn");
+    const sidebar = document.getElementById("mobile-sidebar");
+    const overlay = document.getElementById("overlay");
+    const sidebarClose = document.getElementById("sidebar-close");
 
-    var isOpen = false;
+    let isOpen = false;
 
     function openMenu() {
-      sidebar.classList.remove("-translate-x-full");
-      sidebar.classList.add("translate-x-0");
-      overlay.classList.remove("hidden");
+      sidebar?.classList.remove("-translate-x-full");
+      sidebar?.classList.add("translate-x-0");
+      overlay?.classList.remove("hidden");
       document.body.style.overflow = "hidden";
       isOpen = true;
     }
 
     function closeMenu() {
-      sidebar.classList.add("-translate-x-full");
-      sidebar.classList.remove("translate-x-0");
-      overlay.classList.add("hidden");
+      sidebar?.classList.add("-translate-x-full");
+      sidebar?.classList.remove("translate-x-0");
+      overlay?.classList.add("hidden");
       document.body.style.overflow = "";
       isOpen = false;
     }
 
-    menuBtn.addEventListener("click", function () {
+    menuBtn?.addEventListener("click", function () {
       if (isOpen) closeMenu();
       else openMenu();
     });
     if (sidebarClose) sidebarClose.addEventListener("click", closeMenu);
-    overlay.addEventListener("click", closeMenu);
+    overlay?.addEventListener("click", closeMenu);
 
     window.addEventListener("resize", function () {
       if (window.innerWidth >= 768 && isOpen) closeMenu();
@@ -215,7 +215,7 @@ import { searchIndex } from "../data/search";
 
   // --- Search ---
   (function () {
-    var index = [
+    let index = [
       { title: "Home", path: "/", description: "Landing page" },
       {
         title: "Components",
@@ -259,16 +259,16 @@ import { searchIndex } from "../data/search";
       },
     ];
 
-    var trigger = document.getElementById("search-trigger");
-    var modal = document.getElementById("search-modal");
-    var backdrop = document.getElementById("search-backdrop");
-    var input = document.getElementById("search-input");
-    var closeBtn = document.getElementById("search-close");
-    var results = document.getElementById("search-results");
-    var empty = document.getElementById("search-empty");
+    const trigger = document.getElementById("search-trigger");
+    const modal = document.getElementById("search-modal");
+    const backdrop = document.getElementById("search-backdrop");
+    const input = document.getElementById("search-input");
+    const closeBtn = document.getElementById("search-close");
+    const results = document.getElementById("search-results");
+    const empty = document.getElementById("search-empty");
 
-    var selectedIndex = -1;
-    var currentResults = [];
+    let selectedIndex = -1;
+    let currentResults = [];
 
     function openSearch() {
       modal.classList.remove("hidden");
@@ -291,7 +291,7 @@ import { searchIndex } from "../data/search";
 
     function highlight(text, query) {
       if (!query) return text;
-      var re = new RegExp(
+      let re = new RegExp(
         "(" + query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")",
         "gi"
       );
@@ -302,7 +302,7 @@ import { searchIndex } from "../data/search";
     }
 
     function renderResults(query) {
-      var q = query.trim().toLowerCase();
+      let q = query.trim().toLowerCase();
       if (!q) {
         results.innerHTML = "";
         results.classList.add("hidden");
@@ -312,7 +312,7 @@ import { searchIndex } from "../data/search";
         return;
       }
 
-      var filtered = index.filter(function (entry) {
+      let filtered = index.filter(function (entry) {
         return (
           entry.title.toLowerCase().includes(q) ||
           entry.description.toLowerCase().includes(q)
@@ -332,9 +332,9 @@ import { searchIndex } from "../data/search";
       empty.classList.add("hidden");
       results.classList.remove("hidden");
 
-      var html = "";
-      for (var i = 0; i < filtered.length; i++) {
-        var entry = filtered[i];
+      let html = "";
+      for (let i = 0; i < filtered.length; i++) {
+        let entry = filtered[i];
         html +=
           '<a href="' +
           entry.path +
@@ -378,7 +378,7 @@ import { searchIndex } from "../data/search";
     });
 
     input.addEventListener("keydown", function (e) {
-      var items = results.querySelectorAll("a");
+      let items = results.querySelectorAll("a");
       if (e.key === "ArrowDown") {
         e.preventDefault();
         selectedIndex = Math.min(selectedIndex + 1, items.length - 1);
@@ -397,7 +397,7 @@ import { searchIndex } from "../data/search";
     });
 
     function updateSelection(items) {
-      for (var i = 0; i < items.length; i++) {
+      for (let i = 0; i < items.length; i++) {
         if (i === selectedIndex) {
           items[i].classList.add("bg-black-onyx/5");
           items[i].scrollIntoView({ block: "nearest" });

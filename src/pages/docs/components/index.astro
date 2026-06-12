@@ -1,17 +1,14 @@
 ---
-import { siteData } from "../../data/site";
-import DocsLayout from "../../layouts/DocsLayout.astro";
-import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import { siteData } from "../../../data/site";
+import DocsLayout from "../../../layouts/DocsLayout.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
 ---
 
 <DocsLayout title={`Components | ${siteData.brand}`}>
   <section>
     <div class="space-y-1">
       <Breadcrumbs
-        items={[
-          { label: "Docs", href: "/docs" },
-          { label: "Components" },
-        ]}
+        items={[{ label: "Docs", href: "/docs" }, { label: "Components" }]}
       />
       <h2 class="section-title">Components</h2>
       <p class="section-description">All available UI components.</p>
@@ -41,9 +38,7 @@ import Breadcrumbs from "../../components/Breadcrumbs.astro";
         class="card card-bordered card-shadowed block p-4 hover:border-blue-bell transition-colors"
       >
         <h3 class="font-semibold text-lg">Tabs</h3>
-        <p class="text-sm text-black-onyx/80 mt-1">
-          Tabbed content panels.
-        </p>
+        <p class="text-sm text-black-onyx/80 mt-1">Tabbed content panels.</p>
       </a>
       <a
         href="/docs/components/breadcrumbs"
@@ -77,10 +72,15 @@ import Breadcrumbs from "../../components/Breadcrumbs.astro";
         class="card card-bordered card-shadowed block p-4 hover:border-blue-bell transition-colors"
       >
         <h3 class="font-semibold text-lg">Modal</h3>
-        <p class="text-sm text-black-onyx/80 mt-1">
-          Modal dialog overlay.
-        </p>
+        <p class="text-sm text-black-onyx/80 mt-1">Modal dialog overlay.</p>
       </a>
+      <a
+      href="/docs/components/mockup"
+      class="card card-bordered card-shadowed block p-4 hover:border-blue-bell transition-colors"
+    >
+      <h3 class="font-semibold text-lg">Mockup</h3>
+      <p class="text-sm text-black-onyx/80 mt-1">Device frames to showcase content.</p>
+    </a>
     </div>
   </section>
 </DocsLayout>
