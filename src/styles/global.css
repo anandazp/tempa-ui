@@ -92,43 +92,6 @@ table.props-table {
   @apply font-mono;
 }
 
-/* Tabs component */
-.tab-list {
-  @apply flex border-b border-black-onyx/10;
-}
-.tab-btn {
-  @apply px-4 py-2 text-sm text-black-onyx/60 hover:text-black-onyx transition-colors;
-}
-.tab-btn-active {
-  @apply text-black-onyx font-medium border-b-2 border-black-onyx;
-}
-.tab-panels {
-  @apply mt-4;
-}
-.tab-panels > [data-tab-panel] {
-  @apply hidden;
-}
-.tab-panels > [data-tab-panel].active {
-  @apply block;
-}
-
-/* Breadcrumbs component */
-.breadcrumbs ol {
-  @apply flex items-center flex-wrap gap-2;
-}
-.breadcrumbs li {
-  @apply flex items-center gap-2;
-}
-.breadcrumb-separator {
-  @apply text-black-onyx/30 text-sm;
-}
-.breadcrumb-link {
-  @apply text-sm text-black-onyx/60 hover:text-black-onyx transition-colors;
-}
-.breadcrumb-current {
-  @apply text-sm text-black-onyx font-medium;
-}
-
 /* Docs sidebar */
 .docs-sidebar-menu {
   @apply text-lg lg:text-base block px-3 py-1 text-black-onyx font-medium tracking-tight;
@@ -136,23 +99,6 @@ table.props-table {
 
 .docs-sidebar-link {
   @apply block px-3 py-1 text-sm text-black-onyx/60 rounded hover:bg-black-onyx/5 hover:text-black-onyx transition-colors;
-}
-
-/* Alert component */
-.alert {
-  @apply relative flex items-start gap-3 px-4 py-3 rounded;
-}
-.alert-solid {
-  @apply bg-black-onyx text-white-ghost;
-}
-.alert-left-bordered {
-  @apply bg-black-onyx/5 border-l-4 border-black-onyx text-black-onyx;
-}
-.alert-content {
-  @apply flex-1 text-sm;
-}
-.alert-close {
-  @apply shrink-0 text-current/60 hover:text-current transition-colors;
 }
 
 /* Landing page feature cards */
@@ -261,125 +207,7 @@ table.props-table {
   @apply p-4;
 }
 
-/* Modal component */
-.modal-overlay {
-  @apply fixed inset-0 z-50 bg-black-onyx/50 flex items-center justify-center p-4 hidden;
-}
-.modal-overlay.open {
-  @apply flex;
-}
-.modal {
-  @apply bg-white-ghost rounded w-full max-h-[85vh] flex flex-col;
-}
-.modal-sm {
-  @apply max-w-sm;
-}
-.modal-md {
-  @apply max-w-md;
-}
-.modal-lg {
-  @apply max-w-lg;
-}
-.modal-header {
-  @apply flex items-center justify-between px-6 py-4 border-b border-black-onyx/10;
-}
-.modal-body {
-  @apply px-6 py-4 overflow-y-auto;
-}
-.modal-close {
-  @apply text-black-onyx/40 hover:text-black-onyx transition-colors cursor-pointer;
-}
-
 /* Docs preview button */
 .preview-btn {
   @apply px-4 py-2 text-sm lg:text-base bg-black-onyx text-white-ghost rounded hover:bg-black-onyx/90 transition-colors cursor-pointer;
-}
-
-/* Mockup component */
-.mockup {
-  @apply relative;
-}
-
-/* Laptop variant */
-.mockup-laptop {
-  @apply flex flex-col items-center;
-}
-.mockup-laptop-screen {
-  @apply relative border-10 border-black-onyx/70 rounded-t-lg overflow-hidden bg-white-ghost;
-  aspect-ratio: 16 / 10;
-}
-.mockup-laptop-content {
-  @apply w-full h-full;
-}
-.mockup-laptop-base {
-  @apply relative w-[105%] h-5 bg-black-onyx/40 rounded-b-lg;
-}
-.mockup-laptop-notch {
-  @apply absolute -top-0.5 left-1/2 -translate-x-1/2 w-1/4 h-1 bg-black-onyx/20 rounded-b-sm;
-}
-
-/* Mobile variant */
-.mockup-mobile {
-  @apply relative inline-flex flex-col border-4 border-black-onyx/80 rounded-4xl overflow-hidden;
-  max-width: 320px;
-  min-height: 550px;
-}
-.mockup-mobile-notch {
-  @apply absolute top-0 left-0 right-0 flex justify-center pt-3 pb-2 z-10 bg-white-ghost;
-}
-.mockup-mobile-notch-inner {
-  @apply w-24 h-5 bg-black-onyx/20 rounded-full;
-}
-.mockup-mobile-screen {
-  @apply absolute inset-0;
-}
-.mockup-mobile-indicator {
-  @apply absolute bottom-0 left-0 right-0 flex justify-center pb-3 pt-2 z-10 bg-white-ghost;
-}
-.mockup-mobile-home {
-  @apply w-24 h-1 bg-black-onyx/20 rounded-full;
-}
-.mockup-mobile-notch {
-  @apply flex justify-center pt-3 pb-2;
-}
-.mockup-mobile-notch-inner {
-  @apply w-24 h-5 bg-black-onyx/20 rounded-full;
-}
-.mockup-mobile-screen {
-  @apply flex-1;
-}
-.mockup-mobile-indicator {
-  @apply flex justify-center pb-3 pt-2;
-}
-.mockup-mobile-home {
-  @apply w-24 h-1 bg-black-onyx/20 rounded-full;
-}
-
-/* Browser variant */
-.mockup-browser {
-  @apply border border-black-onyx/20 rounded-lg overflow-hidden bg-white-ghost;
-}
-.mockup-browser-bar {
-  @apply flex items-center gap-3 px-4 py-3 border-b border-black-onyx/0 bg-black-onyx/5;
-}
-.mockup-browser-actions {
-  @apply flex items-center gap-1.5;
-}
-.mockup-action {
-  @apply w-3 h-3 rounded-full;
-}
-.mockup-action-red {
-  @apply bg-red-400;
-}
-.mockup-action-yellow {
-  @apply bg-yellow-400;
-}
-.mockup-action-green {
-  @apply bg-green-400;
-}
-.mockup-browser-url {
-  @apply flex items-center gap-2 flex-1 bg-white-ghost rounded px-3 py-1.5 text-xs text-black-onyx/60 border border-black-onyx/10;
-}
-.mockup-browser-content {
-  @apply p-4;
 }
