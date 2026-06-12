@@ -37,8 +37,9 @@ main section {
 
 #hero,
 #why-us,
+#cta,
 footer {
-  @apply py-10;
+  @apply max-w-7xl py-10 lg:py-20;
 }
 
 .section-title {
@@ -89,26 +90,6 @@ table.props-table {
 }
 .prop-type {
   @apply font-mono;
-}
-
-/* Sidebar component */
-.sidebar {
-  @apply flex flex-col bg-black-onyx text-white-ghost h-full w-64 transition-all duration-300;
-}
-.sidebar.collapsed {
-  @apply w-16;
-}
-.sidebar-header {
-  @apply flex items-center justify-between px-4 py-4 border-b border-white-ghost/10;
-}
-.sidebar-link {
-  @apply flex items-center gap-3 px-3 py-2 rounded hover:bg-white-ghost/10 transition-colors;
-}
-.sidebar-toggle-btn {
-  @apply p-1 rounded hover:bg-white-ghost/10 transition-colors;
-}
-.sidebar.collapsed .sidebar-label {
-  @apply hidden;
 }
 
 /* Tabs component */
@@ -174,6 +155,83 @@ table.props-table {
   @apply shrink-0 text-current/60 hover:text-current transition-colors;
 }
 
+/* Landing page feature cards */
+.features-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-5;
+}
+
+.feature-card {
+  @apply bg-white-ghost border border-black-onyx/20 rounded-xl p-8 hover:border-black-onyx/20 hover:shadow-lg hover:shadow-black-onyx/5 transition-all duration-300;
+}
+
+.feature-icon {
+  @apply w-12 h-12 bg-blue-bell/10 rounded-xl flex items-center justify-center text-blue-bell mb-5;
+}
+
+.feature-title {
+  @apply text-xl font-medium mb-3;
+}
+
+.feature-desc {
+  @apply text-black-onyx/60 leading-relaxed;
+}
+
+/* Landing page showcase */
+.showcase-grid {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-6 mt-10;
+}
+
+.showcase-card {
+  @apply bg-white-ghost border border-black-onyx/10 rounded-xl p-8 hover:border-black-onyx/20 transition-all duration-300;
+}
+
+.showcase-card-accent {
+  @apply bg-white-ghost border border-black-onyx/10 rounded-xl p-8 hover:border-black-onyx/20 transition-all duration-300 relative overflow-hidden;
+}
+
+.showcase-card-accent::before {
+  content: "";
+  @apply absolute top-0 left-0 w-full h-1 bg-blue-bell;
+}
+
+.showcase-label {
+  @apply inline-flex items-center gap-2 text-sm font-medium text-blue-bell mb-4;
+}
+
+.showcase-title {
+  @apply text-xl font-semibold mb-3;
+}
+
+.showcase-desc {
+  @apply text-black-onyx/60 text-sm leading-relaxed mb-5;
+}
+
+.component-pill {
+  @apply inline-flex items-center px-3 py-1.5 text-sm bg-black-onyx/5 text-black-onyx rounded-full hover:bg-black-onyx/10 transition-colors;
+}
+
+/* Landing page stats */
+.stats-grid {
+  @apply grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12;
+}
+
+.stat-item {
+  @apply text-center;
+}
+
+.stat-number {
+  @apply text-3xl lg:text-4xl font-bold text-white-ghost;
+}
+
+.stat-label {
+  @apply text-sm text-white-ghost/60 mt-2;
+}
+
+/* Landing page CTA */
+.cta-card {
+  @apply bg-black-onyx rounded-2xl p-10 md:p-16 text-center;
+}
+
 /* Card component */
 .card {
   @apply bg-white-ghost rounded overflow-hidden;
@@ -235,4 +293,93 @@ table.props-table {
 /* Docs preview button */
 .preview-btn {
   @apply px-4 py-2 text-sm lg:text-base bg-black-onyx text-white-ghost rounded hover:bg-black-onyx/90 transition-colors cursor-pointer;
+}
+
+/* Mockup component */
+.mockup {
+  @apply relative;
+}
+
+/* Laptop variant */
+.mockup-laptop {
+  @apply flex flex-col items-center;
+}
+.mockup-laptop-screen {
+  @apply relative border-10 border-black-onyx/70 rounded-t-lg overflow-hidden bg-white-ghost;
+  aspect-ratio: 16 / 10;
+}
+.mockup-laptop-content {
+  @apply w-full h-full;
+}
+.mockup-laptop-base {
+  @apply relative w-[105%] h-5 bg-black-onyx/40 rounded-b-lg;
+}
+.mockup-laptop-notch {
+  @apply absolute -top-0.5 left-1/2 -translate-x-1/2 w-1/4 h-1 bg-black-onyx/20 rounded-b-sm;
+}
+
+/* Mobile variant */
+.mockup-mobile {
+  @apply relative inline-flex flex-col border-4 border-black-onyx/80 rounded-4xl overflow-hidden;
+  max-width: 320px;
+  min-height: 550px;
+}
+.mockup-mobile-notch {
+  @apply absolute top-0 left-0 right-0 flex justify-center pt-3 pb-2 z-10 bg-white-ghost;
+}
+.mockup-mobile-notch-inner {
+  @apply w-24 h-5 bg-black-onyx/20 rounded-full;
+}
+.mockup-mobile-screen {
+  @apply absolute inset-0;
+}
+.mockup-mobile-indicator {
+  @apply absolute bottom-0 left-0 right-0 flex justify-center pb-3 pt-2 z-10 bg-white-ghost;
+}
+.mockup-mobile-home {
+  @apply w-24 h-1 bg-black-onyx/20 rounded-full;
+}
+.mockup-mobile-notch {
+  @apply flex justify-center pt-3 pb-2;
+}
+.mockup-mobile-notch-inner {
+  @apply w-24 h-5 bg-black-onyx/20 rounded-full;
+}
+.mockup-mobile-screen {
+  @apply flex-1;
+}
+.mockup-mobile-indicator {
+  @apply flex justify-center pb-3 pt-2;
+}
+.mockup-mobile-home {
+  @apply w-24 h-1 bg-black-onyx/20 rounded-full;
+}
+
+/* Browser variant */
+.mockup-browser {
+  @apply border border-black-onyx/20 rounded-lg overflow-hidden bg-white-ghost;
+}
+.mockup-browser-bar {
+  @apply flex items-center gap-3 px-4 py-3 border-b border-black-onyx/0 bg-black-onyx/5;
+}
+.mockup-browser-actions {
+  @apply flex items-center gap-1.5;
+}
+.mockup-action {
+  @apply w-3 h-3 rounded-full;
+}
+.mockup-action-red {
+  @apply bg-red-400;
+}
+.mockup-action-yellow {
+  @apply bg-yellow-400;
+}
+.mockup-action-green {
+  @apply bg-green-400;
+}
+.mockup-browser-url {
+  @apply flex items-center gap-2 flex-1 bg-white-ghost rounded px-3 py-1.5 text-xs text-black-onyx/60 border border-black-onyx/10;
+}
+.mockup-browser-content {
+  @apply p-4;
 }

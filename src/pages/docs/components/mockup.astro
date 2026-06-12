@@ -1,0 +1,121 @@
+---
+import { siteData } from "../../../data/site";
+
+import { Image } from "astro:assets";
+
+
+import DocsLayout from "../../../layouts/DocsLayout.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import Mockup from "../../../components/Mockup.astro";
+import CodeBlock from "../../../components/CodeBlock.astro";
+import MockupSource from "../../../components/Mockup.astro?raw";
+import Sailboat from "../../../images/sailboat.png";
+import Bedroom from "../../../images/cozy-bedroom.png";
+import Desktop from "../../../images/desktop.png";
+
+const usageCode = `<Mockup variant="laptop">
+  <div class="flex items-center justify-center h-full bg-gradient-to-br from-blue-100 to-purple-100 p-4">
+    <h3 class="text-lg font-semibold">Laptop Content</h3>
+  </div>
+</Mockup>
+
+        <Mockup variant="mobile">
+          <Image src={Sailboat} alt="Sailboat" class="w-full h-full object-cover" />
+        </Mockup>
+
+<Mockup variant="browser">
+  <div class="bg-gradient-to-br from-yellow-100 to-orange-100 p-4">
+    <h3 class="text-lg font-semibold">Browser Content</h3>
+  </div>
+</Mockup>`;
+---
+
+<DocsLayout title=`Mockup | ${siteData.brand}`>
+  <section>
+    <div class="space-y-1">
+      <Breadcrumbs
+        items={[
+          { label: "Docs", href: "/docs" },
+          { label: "Components", href: "/components" },
+          { label: "Mockup" },
+        ]}
+      />
+      <h2 class="section-title">Mockup</h2>
+      <p class="section-description">
+        Device frames to showcase content inside laptop, mobile, or browser containers.
+      </p>
+    </div>
+
+    <h3 class="section-subtitle">Code</h3>
+    <CodeBlock
+      code={MockupSource}
+      showLineNumbers={true}
+      fileName="components/Mockup.astro"
+    />
+
+    <h3 class="section-subtitle">Preview</h3>
+    <div class="flex flex-col gap-5">
+      <div class="preview-wrapper">
+        <h4 class="preview-heading">Laptop Mockup</h4>
+        <Mockup variant="laptop">
+          <Image src={Desktop} alt="Desktop" class="w-full h-full object-cover" />
+        </Mockup>
+      </div>
+      <div class="preview-wrapper">
+        <h4 class="preview-heading">Mobile Mockup</h4>
+        <Mockup variant="mobile">
+            <Image src={Sailboat} alt="Sailboat" class="w-[400px] h-full object-cover" />
+        </Mockup>
+      </div>
+
+      <div class="preview-wrapper">
+        <h4 class="preview-heading">Mobile Mockup2</h4>
+        <div class="rounded-4xl border-10 border-black-onyx/80 w-[500px] h-[800px] overflow-hidden relative">
+          <div class="absolute top-5 left-1/2 -translate-x-1/2 w-1/3 h-10 bg-black-onyx/60 rounded-lg"></div>
+          <Image src={Sailboat} alt="Sailboat" class="w-[500px] h-full object-cover" />
+        </div>
+      </div>
+
+      <div class="preview-wrapper">
+        <h4 class="preview-heading">Browser Mockup</h4>
+        <Mockup variant="browser">
+          <div class="bg-linear-to-br from-amber-50 to-orange-100 p-6">
+            <h3 class="text-lg font-semibold text-black-onyx">Browser Window</h3>
+            <p class="text-sm text-black-onyx/60 mt-1">Full browser frame with address bar and window controls.</p>
+          </div>
+        </Mockup>
+      </div>
+    </div>
+
+    <h3 class="section-subtitle">Usage</h3>
+    <CodeBlock language="javascript" code={usageCode} showLineNumbers={true} />
+
+    <h3 class="section-subtitle">Props</h3>
+    <div class="overflow-x-auto">
+      <table class="props-table">
+        <thead>
+          <tr class="tr-head">
+            <th class="th-cell">Prop</th>
+            <th class="th-cell">Type</th>
+            <th class="th-cell">Default</th>
+            <th class="th-desc">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">variant</td>
+            <td class="td-cell prop-type">"laptop" | "mobile" | "browser"</td>
+            <td class="td-cell prop-type">"laptop"</td>
+            <td class="td-desc">Mockup device variant.</td>
+          </tr>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">class</td>
+            <td class="td-cell prop-type">string</td>
+            <td class="td-cell">—</td>
+            <td class="td-desc">Additional CSS classes.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</DocsLayout>
