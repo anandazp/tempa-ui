@@ -12,23 +12,25 @@ const {
 } = Astro.props;
 
 const variantClasses = {
-  solid: "alert-solid",
-  "left-bordered": "alert-left-bordered",
+  solid: "bg-black-onyx text-white-ghost",
+  "left-bordered": "bg-black-onyx/5 border-l-4 border-black-onyx text-black-onyx",
 };
 ---
 
-<div class={`alert ${variantClasses[variant]} ${className}`} role="alert">
-  <div class="alert-content">
+<div class={`alert relative flex items-start gap-3 px-4 py-3 rounded ${variantClasses[variant]} ${className}`} role="alert">
+  <div class="flex-1 text-sm">
     <slot />
   </div>
   {dismissible && (
-    <button class="alert-close" aria-label="Close">
+    <button class="alert-close shrink-0 text-current/60 hover:text-current transition-colors" aria-label="Close">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256">
         <path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path>
       </svg>
     </button>
   )}
 </div>
+
+
 
 <script>
   document.querySelectorAll(".alert-close").forEach((btn) => {

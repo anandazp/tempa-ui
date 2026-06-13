@@ -14,17 +14,17 @@ const {
 } = Astro.props;
 ---
 
-<div id={id} class={`modal-overlay ${open ? "open" : ""}`} data-modal>
-  <div class={`modal modal-${size} ${className}`} role="dialog" aria-modal="true">
-    <div class="modal-header">
+<div id={id} class={`modal-overlay fixed inset-0 z-50 bg-black-onyx/50 flex items-center justify-center p-4 ${open ? "open" : "hidden"}`} data-modal>
+  <div class={`modal bg-white-ghost rounded w-full max-h-[85vh] flex flex-col ${size === "sm" ? "max-w-sm" : size === "md" ? "max-w-md" : "max-w-lg"} ${className}`} role="dialog" aria-modal="true">
+    <div class="modal-header flex items-center justify-between px-6 py-4 border-b border-black-onyx/10">
       <slot name="header" />
-      <button class="modal-close" aria-label="Close">
+      <button class="modal-close text-black-onyx/40 hover:text-black-onyx transition-colors cursor-pointer" aria-label="Close">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256">
           <path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path>
         </svg>
       </button>
     </div>
-    <div class="modal-body">
+    <div class="modal-body px-6 py-4 overflow-y-auto">
       <slot />
     </div>
   </div>
@@ -36,11 +36,13 @@ const {
 
     function openModal() {
       overlay.classList.add("open");
+      overlay.classList.remove("hidden");
       document.body.style.overflow = "hidden";
     }
 
     function closeModal() {
       overlay.classList.remove("open");
+      overlay.classList.add("hidden");
       document.body.style.overflow = "";
     }
 

@@ -5,12 +5,12 @@ export const siteData = {
     "Free UI components built with Astro, Typescript and Tailwind CSS.",
   navigation: [
     { label: "Docs", href: "/docs" },
-    { label: "Components", href: "/components" },
+    { label: "Components", href: "/docs/components" },
   ],
   sideNavigationDocs: [
     { label: "Introduction", href: "/docs" },
-    { label: "Installation", href: "/components" },
-    { label: "Components", href: "/components" },
+    { label: "Installation", href: "/docs/components" },
+    { label: "Components", href: "/docs/components" },
   ],
   componentsList: [
     { label: "Button", href: "/button" },
@@ -19,5 +19,6 @@ export const siteData = {
     { label: "Breadcrumbs", href: "/breadcrumbs" },
     { label: "Alert", href: "/alert" },
     { label: "Modal", href: "/modal" },
+    { label: "Mockup", href: "/mockup" },
   ],
 };

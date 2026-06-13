@@ -17,10 +17,10 @@ const {
 ---
 
 <div class={`tabs ${className}`}>
-  <div class="tab-list" role="tablist">
+  <div class="flex border-b border-black-onyx/10" role="tablist">
     {tabs.map((tab, i) => (
       <button
-        class={`tab-btn ${i === activeIndex ? "tab-btn-active" : ""}`}
+        class={`tab-btn px-4 py-2 text-sm text-black-onyx/60 hover:text-black-onyx transition-colors ${i === activeIndex ? "tab-btn-active text-black-onyx font-medium border-b-2 border-black-onyx" : ""}`}
         role="tab"
         aria-selected={i === activeIndex}
       >
@@ -28,7 +28,7 @@ const {
       </button>
     ))}
   </div>
-  <div class="tab-panels">
+  <div class="mt-4">
     <slot />
   </div>
 </div>
@@ -40,11 +40,17 @@ const {
 
     function activateTab(index) {
       tabButtons.forEach((btn, i) => {
-        btn.classList.toggle("tab-btn-active", i === index);
-        btn.setAttribute("aria-selected", i === index);
+        const isActive = i === index;
+        btn.classList.toggle("tab-btn-active", isActive);
+        btn.classList.toggle("text-black-onyx", isActive);
+        btn.classList.toggle("font-medium", isActive);
+        btn.classList.toggle("border-b-2", isActive);
+        btn.classList.toggle("border-black-onyx", isActive);
+        btn.setAttribute("aria-selected", isActive);
       });
       panels.forEach((panel, i) => {
         panel.classList.toggle("active", i === index);
+        panel.style.display = i === index ? "block" : "none";
       });
     }
 

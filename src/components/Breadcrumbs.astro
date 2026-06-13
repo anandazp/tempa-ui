@@ -13,16 +13,18 @@ const { items, class: className = "" } = Astro.props;
 ---
 
 <nav aria-label="Breadcrumb" class={`breadcrumbs ${className}`}>
-  <ol>
+  <ol class="flex items-center flex-wrap gap-2">
     {items.map((item, i) => (
-      <li>
-        {i > 0 && <span class="breadcrumb-separator" aria-hidden="true">/</span>}
+      <li class="flex items-center gap-2">
+        {i > 0 && <span class="text-black-onyx/30 text-sm" aria-hidden="true">/</span>}
         {item.href ? (
-          <a href={item.href} class="breadcrumb-link">{item.label}</a>
+          <a href={item.href} class="text-sm text-black-onyx/60 hover:text-black-onyx transition-colors">{item.label}</a>
         ) : (
-          <span class="breadcrumb-current">{item.label}</span>
+          <span class="text-sm text-black-onyx font-medium">{item.label}</span>
         )}
       </li>
     ))}
   </ol>
 </nav>
+
+
