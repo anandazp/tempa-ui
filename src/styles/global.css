@@ -37,8 +37,7 @@ main section {
 
 #hero,
 #why-us,
-#cta,
-footer {
+#cta {
   @apply max-w-7xl py-10 lg:py-20;
 }
 
