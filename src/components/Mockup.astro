@@ -9,52 +9,82 @@ const { variant = "laptop", class: className = "" } = Astro.props;
 
 {
   variant === "laptop" && (
-    <div class={`mockup mockup-laptop ${className}`}>
-      <div class="mockup-laptop-screen">
-        <div class="mockup-laptop-content">
+    <div class={`relative flex flex-col items-center ${className}`}>
+      <div class="mockup-laptop-screen relative border-10 border-black-onyx/70 rounded-t-lg overflow-hidden bg-white-ghost">
+        
+        {/* Content */}
+        <div class="w-full h-full">
           <slot />
         </div>
       </div>
-      <div class="mockup-laptop-base">
-        <div class="mockup-laptop-notch"></div>
+      {/* Laptop Base */}
+      <div class="relative w-[105%] h-5 bg-black-onyx/40 rounded-b-lg">
+
+      {/* Laptop Notch */}
+        <div class="absolute -top-0.5 left-1/2 -translate-x-1/2 w-1/4 h-1 bg-black-onyx/20 rounded-b-sm"></div>
       </div>
     </div>
   )
 }
 {
   variant === "mobile" && (
-    <div class={`mockup mockup-mobile ${className}`}>
-      <div class="mockup-mobile-screen">
-        <slot />
-      </div>
-      <div class="mockup-mobile-notch">
-        <div class="mockup-mobile-notch-inner"></div>
-      </div>
-      <div class="mockup-mobile-indicator">
-        <div class="mockup-mobile-home"></div>
-      </div>
-    </div>
+    // <div class={`relative mockup-mobile ${className}`}>
+    //   <div class="mockup-mobile-screen">
+    //     <slot />
+    //   </div>
+    //   <div class="mockup-mobile-notch">
+    //     <div class="mockup-mobile-notch-inner"></div>
+    //   </div>
+    //   <div class="mockup-mobile-indicator">
+    //     <div class="mockup-mobile-home"></div>
+    //   </div>
+    // </div>
+        <div class="rounded-4xl border-10 border-black-onyx/80 w-[500px] h-[800px] overflow-hidden relative">
+          <div class="absolute top-5 left-1/2 -translate-x-1/2 w-1/3 h-10 bg-black-onyx/60 rounded-lg"></div>
+          <slot/>
+        </div>
   )
 }
+
+<!-- Browser variant -->
 {
   variant === "browser" && (
-    <div class={`mockup mockup-browser ${className}`}>
-      <div class="mockup-browser-bar">
-        <div class="mockup-browser-actions">
-          <span class="mockup-action mockup-action-red"></span>
-          <span class="mockup-action mockup-action-yellow"></span>
-          <span class="mockup-action mockup-action-green"></span>
+    <div class={`relative border border-black-onyx/20 rounded-lg overflow-hidden bg-white-ghost ${className}`}>
+
+      {/* Browser bar */}
+      <div class="flex items-center gap-3 px-4 py-3 border-b border-black-onyx/0 bg-black-onyx/5">
+
+      {/* Browser actions */}
+        <div class="flex items-center gap-1.5">
+          <span class="w-3 h-3 rounded-full bg-red-400"></span>
+          <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
+          <span class="w-3 h-3 rounded-full bg-green-400"></span>
         </div>
-        <div class="mockup-browser-url">
+
+        {/* Browser URL */}
+        <div class="flex items-center gap-2 flex-1 bg-white-ghost rounded px-3 py-1.5 text-xs text-black-onyx/60 border border-black-onyx/10">
           <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 256 256">
             <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm88,104a87.64,87.64,0,0,1-5.33,30H157.94a161.12,161.12,0,0,0,0-60h52.73A87.64,87.64,0,0,1,216,128ZM128,200c-17.41,0-35.77-12.59-48.57-36.29C71.33,150.68,66.48,139.53,64.56,128h62.88A150.13,150.13,0,0,1,128,200ZM64.56,128c1.92-11.53,6.77-22.68,14.87-35.71C92.23,68.59,110.59,56,128,56a150.13,150.13,0,0,1,14.56,72ZM45.33,98H78.06a161.12,161.12,0,0,0,0,60H45.33A87.64,87.64,0,0,1,40,128,87.64,87.64,0,0,1,45.33,98ZM87.39,36.35C100.19,44.23,112.14,55.64,120.87,72H82.68A88.46,88.46,0,0,1,87.39,36.35ZM168.61,36.35A88.46,88.46,0,0,1,173.32,72H135.13C143.86,55.64,155.81,44.23,168.61,36.35ZM173.32,184H135.13c8.73,16.36,20.68,27.77,33.48,35.65A88.46,88.46,0,0,0,173.32,184ZM82.68,184a88.46,88.46,0,0,0,4.71,35.65C100.19,211.77,112.14,200.36,120.87,184Z"></path>
           </svg>
           <span>https://example.com</span>
         </div>
       </div>
-      <div class="mockup-browser-content">
+
+      {/* Content */}
+      <div class="p-4">
         <slot />
       </div>
+      
     </div>
   )
 }
+
+<style>
+
+  .mockup-laptop-screen {
+    aspect-ratio: 16 / 10;
+  }
+
+
+ 
+</style>

@@ -21,8 +21,14 @@ import { siteData } from "../data/site";
 
   <section id="why-us">
     <div class="max-w-2xl">
-      <h2 class="text-2xl font-medium w-3/4 md:w-full">
+      <h2 class="text-2xl lg:hidden font-medium w-3/4 md:w-full">
         Stop overthinking, Start creating
+      </h2>
+      <h2 class="hidden lg:block text-2xl lg:text-4xl font-medium w-3/4 md:w-full">
+        Stop overthinking
+      </h2>
+      <h2 class="hidden lg:block  text-2xl lg:text-4xl font-medium w-3/4 md:w-full">
+        Start creating
       </h2>
     </div>
 
@@ -76,163 +82,10 @@ import { siteData } from "../data/site";
     </div>
   </section>
 
-  <!-- <section id="showcase" class="bg-black-onyx/5 py-16">
-    <div class="text-center max-w-2xl mx-auto">
-      <h2 class="section-title">Components for Every Need</h2>
-      <p class="section-subtitle section-description">
-        From navigation to feedback — everything you need to build modern
-        interfaces.
-      </p>
-    </div>
-
-    <div class="showcase-grid">
-      <div class="showcase-card-accent md:col-span-2">
-        <span class="showcase-label">
-          <svg
-            width="16"
-            height="16"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-          >
-            <path d="M4 4h16v16H4z"></path><path d="M9 4v16"></path><path
-              d="M4 9h16"></path><path d="M4 15h16"></path><path d="M15 4v16"
-            ></path>
-          </svg>
-          Navigation
-        </span>
-        <h3 class="showcase-title">Navigate with Ease</h3>
-        <p class="showcase-desc">
-          Sidebars, tabs, and breadcrumbs that adapt to your layout. Responsive
-          by default.
-        </p>
-        <div class="flex flex-wrap gap-2">
-          <span class="component-pill">Sidebar</span>
-          <span class="component-pill">Tabs</span>
-          <span class="component-pill">Breadcrumbs</span>
-        </div>
-      </div>
-
-      <div class="showcase-card">
-        <span class="showcase-label">
-          <svg
-            width="16"
-            height="16"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-          >
-            <rect x="3" y="3" width="18" height="18" rx="2"></rect><path
-              d="M3 9h18"></path><path d="M9 3v7"></path><path d="M15 3v7"
-            ></path>
-          </svg>
-          Forms & Inputs
-        </span>
-        <h3 class="showcase-title">Simple Inputs</h3>
-        <p class="showcase-desc">
-          Buttons and form elements styled for action.
-        </p>
-        <div class="flex flex-wrap gap-2">
-          <span class="component-pill">Button</span>
-        </div>
-      </div>
-
-      <div class="showcase-card">
-        <span class="showcase-label">
-          <svg
-            width="16"
-            height="16"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"
-            ></path><path d="M12 8v8"></path><path d="M8 12h8"></path>
-          </svg>
-          Feedback
-        </span>
-        <h3 class="showcase-title">Keep Users Informed</h3>
-        <p class="showcase-desc">Alerts and modals that communicate clearly.</p>
-        <div class="flex flex-wrap gap-2">
-          <span class="component-pill">Alert</span>
-          <span class="component-pill">Modal</span>
-        </div>
-      </div>
-
-      <div class="showcase-card-accent md:col-span-2">
-        <span class="showcase-label">
-          <svg
-            width="16"
-            height="16"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-          >
-            <rect x="4" y="4" width="16" height="16" rx="2"></rect><path
-              d="M4 9h16"></path><path d="M9 4v16"></path>
-          </svg>
-          Data & Display
-        </span>
-        <h3 class="showcase-title">Display Information Beautifully</h3>
-        <p class="showcase-desc">
-          Cards with multiple layout variants for any content type.
-        </p>
-        <div class="flex flex-wrap gap-2">
-          <span class="component-pill">Card</span>
-        </div>
-      </div>
-
-      <div
-        class="showcase-card flex flex-col items-center justify-center text-center border-2 border-dashed border-black-onyx/20"
-      >
-        <svg
-          width="32"
-          height="32"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.5"
-          viewBox="0 0 24 24"
-          class="text-black-onyx/30 mb-3"
-        >
-          <path d="M12 5v14M5 12h14"></path>
-        </svg>
-        <p class="text-sm text-black-onyx/40">More components coming soon</p>
-      </div>
-    </div>
-  </section> -->
-
-  <!-- <section id="stats" class="bg-black-onyx py-16">
-    <div class="stats-grid">
-      <div class="stat-item">
-        <p class="stat-number">7+</p>
-        <p class="stat-label">Components</p>
-      </div>
-      <div class="stat-item">
-        <p class="stat-number">100%</p>
-        <p class="stat-label">Open Source</p>
-      </div>
-      <div class="stat-item">
-        <p class="stat-number">Zero</p>
-        <p class="stat-label">Dependencies</p>
-      </div>
-      <div class="stat-item">
-        <p class="stat-number">Always</p>
-        <p class="stat-label">Growing</p>
-      </div>
-    </div>
-  </section> -->
-
   <section id="cta" class="bg-black-onyx rounded-xl px-5 text-center">
-    <h2 class="text-white-ghost! font-medium text-3xl">
+    <h2 class="text-white-ghost! font-medium text-3xl lg:text-4xl">
       Start Building Right Now
     </h2>
-    <button class="rounded bg-white-ghost text-black-onyx font-medium py-2 px-5"
-      >Get Started</button
-    >
+    <Button href="/docs" variant="outline" class="lg:w-fit mx-auto">Get Started</Button>
   </section>
 </Layout>
