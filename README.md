@@ -1,43 +1,66 @@
-# Astro Starter Kit: Minimal
+# Tempa UI
+
+A copy-paste UI component library built with [Astro](https://astro.build) and [Tailwind CSS v4](https://tailwindcss.com).
+
+## Features
+
+- **Astro-native components** — No JavaScript framework required. Each component is a plain `.astro` file.
+- **Tailwind CSS v4** — Styled entirely with utility classes and a custom theme defined via `@theme`.
+- **Copy-paste workflow** — Components are meant to be copied directly into your own Astro project.
+- **Interactive elements** — Modal, Tabs, Sidebar, Alert dismiss, and Search use vanilla JavaScript with no external dependencies.
+- **Responsive** — Mobile navigation, adaptive layouts, and responsive component variants.
+
+## Components
+
+| Component       | Variants                                                 |
+| --------------- | -------------------------------------------------------- |
+| **Button**      | `primary`, `outline`                                     |
+| **Card**        | `vertical`, `horizontal`, `bordered`, `shadowed`         |
+| **Alert**       | `solid`, `left-bordered`, `dismissible`                  |
+| **Modal**       | sizes `sm`, `md`, `lg`                                   |
+| **Tabs**        | configurable tab panels                                  |
+| **Sidebar**     | `expanded`, `collapsed`                                  |
+| **Breadcrumbs** | auto-linked trail                                        |
+| **Mockup**      | `laptop`, `mobile`, `browser`                            |
+| **Navbar**      | responsive navigation with search modal (Ctrl+K / Cmd+K) |
+
+## Getting Started
 
 ```sh
-npm create astro@latest -- --template minimal
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+The dev server starts at `http://localhost:4321`.
 
-## 🚀 Project Structure
+## Commands
 
-Inside of your Astro project, you'll see the following folders and files:
+| Command           | Action                             |
+| ----------------- | ---------------------------------- |
+| `npm run dev`     | Start local dev server             |
+| `npm run build`   | Build production site to `./dist/` |
+| `npm run preview` | Preview production build locally   |
+| `npm run astro`   | Run Astro CLI commands             |
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+## Usage
+
+Copy any `.astro` file from `src/components/` into your project's `src/components/` directory. Import and use it in any Astro page or layout:
+
+```astro
+---
+import Button from "../components/Button.astro";
+---
+
+<Button variant="primary">Click me</Button>
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Tech Stack
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+- **Astro** v6 — Static site generator
+- **Tailwind CSS** v4 — Utility-first CSS framework
+- **TypeScript** — Strict mode
+- **Vanilla JavaScript** — All interactivity (no React, Vue, or Svelte)
 
-Any static assets, like images, can be placed in the `public/` directory.
+## License
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+MIT
