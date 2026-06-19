@@ -18,6 +18,7 @@ export const siteData = {
     { label: "Tabs", href: "/tabs" },
     { label: "Breadcrumbs", href: "/breadcrumbs" },
     { label: "Alert", href: "/alert" },
+    { label: "Card", href: "/card" },
     { label: "Modal", href: "/modal" },
     { label: "Mockup", href: "/mockup" },
   ],
