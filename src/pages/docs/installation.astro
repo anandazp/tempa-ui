@@ -1,0 +1,72 @@
+---
+import { siteData } from "../../data/site";
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+---
+
+<DocsLayout title={`Installation | ${siteData.brand}`}>
+  <section>
+    <div class="space-y-1">
+      <Breadcrumbs
+        items={[
+          { label: "Docs", href: "/docs" },
+          { label: "Installation" },
+        ]}
+      />
+      <h2 class="section-title">Installation</h2>
+      <p class="section-description">
+        Get started with Tempa UI in your Astro project.
+      </p>
+    </div>
+
+    <h3 class="section-subtitle">Prerequisites</h3>
+    <p class="section-description">
+      Before using Tempa UI components, make sure you have an Astro project
+      with Tailwind CSS set up. If you haven't already, create one:
+    </p>
+
+    <pre class="bg-black-onyx text-white-ghost rounded p-4 text-sm overflow-x-auto mt-2">npm create astro@latest my-project -- --template basics
+cd my-project
+npx astro add tailwind</pre>
+
+    <h3 class="section-subtitle">Using the Components</h3>
+    <p class="section-description">
+      Tempa UI is not an npm package, it's just a collection of copy-paste ready
+      components. There's nothing to install. Just grab the component file
+      you need and drop it into your project.
+    </p>
+
+    <ol class="list-decimal list-inside space-y-2 text-black-onyx/80 mt-2">
+      <li>
+        Browse the <a href="/docs/components" class="font-medium underline text-black-onyx">components page</a>
+        and find the component you want.
+      </li>
+      <li>
+        Open its documentation page and copy the source code.
+      </li>
+      <li>
+        Paste the <code class="font-mono text-sm bg-black-onyx/10 px-1 rounded">.astro</code> file into
+        your <code class="font-mono text-sm bg-black-onyx/10 px-1 rounded">src/components/</code> folder.
+      </li>
+      <li>
+        Import and use it like any other Astro component.
+      </li>
+    </ol>
+
+    <h3 class="section-subtitle">What You'll Need</h3>
+    <ul class="list-disc list-inside space-y-1 text-black-onyx/80 mt-2">
+      <li>
+        <a href="https://astro.build/" class="font-semibold text-black-onyx hover:underline-offset-2">Astro</a> — all components are plain <code class="font-mono text-sm bg-black-onyx/10 px-1 rounded">.astro</code> files.
+      </li>
+      <li>
+        <a href="https://tailwindcss.com/" class="font-semibold text-black-onyx hover:underline-offset-2">Tailwind CSS v4</a> — the components use Tailwind utility
+        classes for styling.
+      </li>
+    </ul>
+
+    <p class="section-description mt-6">
+      That's it. No framework, no build step, no hidden dependencies. Just
+      Astro, Tailwind, and the component you need.
+    </p>
+  </section>
+</DocsLayout>

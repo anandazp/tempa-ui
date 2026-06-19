@@ -177,35 +177,6 @@ table.props-table {
   @apply bg-black-onyx rounded-2xl p-10 md:p-16 text-center;
 }
 
-/* Card component */
-.card {
-  @apply bg-white-ghost rounded overflow-hidden;
-}
-.card-vertical {
-  @apply flex flex-col;
-}
-.card-horizontal {
-  @apply flex flex-col md:flex-row;
-}
-.card-bordered {
-  @apply border-2 border-black-onyx/20;
-}
-.card-shadowed {
-  @apply shadow-lg shadow-black-onyx/10;
-}
-.card-image {
-  @apply bg-black-onyx/10;
-}
-.card-image img {
-  @apply w-full h-full object-cover;
-}
-.card-horizontal .card-image {
-  @apply md:w-48 md:shrink-0;
-}
-.card-body {
-  @apply p-4;
-}
-
 /* Docs preview button */
 .preview-btn {
   @apply px-4 py-2 text-sm lg:text-base bg-black-onyx text-white-ghost rounded hover:bg-black-onyx/90 transition-colors cursor-pointer;

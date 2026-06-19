@@ -1,0 +1,64 @@
+---
+import type { ImageMetadata } from "astro";
+
+interface BentoItem {
+  title: string;
+  description?: string;
+  size?: "sm" | "md" | "lg" | "featured";
+  imageSrc?: ImageMetadata | string;
+  imageOverlay?: boolean;
+  class?: string;
+}
+
+interface Props {
+  items: BentoItem[];
+  class?: string;
+}
+
+const {
+  items,
+  class: className = "",
+} = Astro.props;
+
+const sizeClasses = {
+  sm: "md:col-span-1 md:row-span-1",
+  md: "md:col-span-1 md:row-span-2",
+  lg: "md:col-span-2 md:row-span-1",
+  featured: "md:col-span-2 md:row-span-2",
+};
+---
+
+<div class:list={["grid grid-cols-1 md:grid-cols-4 gap-3 md:gap-4 auto-rows-auto md:auto-rows-fr", className]}>
+  {items.map((item) => {
+    const bgUrl = item.imageSrc
+      ? typeof item.imageSrc === "string"
+        ? item.imageSrc
+        : item.imageSrc.src
+      : null;
+
+    const showOverlay = item.imageSrc && item.imageOverlay !== false;
+
+    return (
+      <div
+        class:list={[
+          "rounded-xl p-5 md:p-6 flex flex-col justify-center bg-cover bg-center relative",
+          sizeClasses[item.size || "sm"],
+          item.imageSrc ? "text-white-ghost" : item.class || "bg-black-onyx/5 text-black-onyx",
+        ]}
+        style={bgUrl ? { backgroundImage: `url(${bgUrl})` } : undefined}
+      >
+        {showOverlay && (
+          <div class="absolute inset-0 bg-black-onyx/50 rounded-xl" />
+        )}
+        <div class="relative z-10">
+          <h3 class="text-sm md:text-base font-semibold">{item.title}</h3>
+          {item.description && (
+            <p class="text-xs md:text-sm mt-1 leading-relaxed opacity-80">
+              {item.description}
+            </p>
+          )}
+        </div>
+      </div>
+    );
+  })}
+</div>

@@ -21,13 +21,13 @@ const variants = {
 };
 
 const classes = `
-inline-flex items-center justify-center gap-2 px-5 py-2 rounded transition-all duration-200 focus:outline-none
+inline-flex items-center justify-center gap-2 px-5 py-2 rounded transition-all duration-200 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black-onyx focus:outline-none
 disabled:opacity-50 disabled:pointer-events-none ${variants[variant]} ${className}`;
 ---
 
 {
   href ? (
-    <a href={href} class={classes}>
+    <a href={disabled ? undefined : href} class={classes} aria-disabled={disabled ? "true" : undefined} tabindex={disabled ? -1 : undefined}>
       <slot />
     </a>
   ) : (

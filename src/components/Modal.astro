@@ -14,12 +14,14 @@ const {
 } = Astro.props;
 ---
 
-<div id={id} class={`modal-overlay fixed inset-0 z-50 bg-black-onyx/50 flex items-center justify-center p-4 ${open ? "open" : "hidden"}`} data-modal>
-  <div class={`modal bg-white-ghost rounded w-full max-h-[85vh] flex flex-col ${size === "sm" ? "max-w-sm" : size === "md" ? "max-w-md" : "max-w-lg"} ${className}`} role="dialog" aria-modal="true">
+<div id={id} class={`modal-overlay fixed inset-0 z-50 bg-black-onyx/50 flex items-center justify-center p-4 ${open ? "open" : "hidden"}`} data-modal role="presentation">
+  <div class={`modal bg-white-ghost rounded w-full max-h-[85vh] flex flex-col ${size === "sm" ? "max-w-sm" : size === "md" ? "max-w-md" : "max-w-lg"} ${className}`} role="dialog" aria-modal="true" aria-labelledby={`${id}-title`}>
     <div class="modal-header flex items-center justify-between px-6 py-4 border-b border-black-onyx/10">
-      <slot name="header" />
+      <div id={`${id}-title`}>
+        <slot name="header" />
+      </div>
       <button class="modal-close text-black-onyx/40 hover:text-black-onyx transition-colors cursor-pointer" aria-label="Close">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256">
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256">
           <path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path>
         </svg>
       </button>
@@ -32,19 +34,49 @@ const {
 
 <script>
   document.querySelectorAll("[data-modal]").forEach((overlay) => {
+    const modal = overlay.querySelector(".modal");
     const closeBtn = overlay.querySelector(".modal-close");
+    let previousFocus = null;
 
     function openModal() {
       overlay.classList.add("open");
       overlay.classList.remove("hidden");
       document.body.style.overflow = "hidden";
+      previousFocus = document.activeElement;
+      modal?.focus();
     }
 
     function closeModal() {
       overlay.classList.remove("open");
       overlay.classList.add("hidden");
       document.body.style.overflow = "";
+      if (previousFocus) {
+        previousFocus.focus();
+        previousFocus = null;
+      }
     }
+
+    function trapFocus(e) {
+      if (!overlay.classList.contains("open")) return;
+      const focusable = overlay.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.key === "Tab") {
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    }
+
+    overlay.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeModal();
+      trapFocus(e);
+    });
 
     closeBtn?.addEventListener("click", closeModal);
     overlay.addEventListener("click", (e) => {

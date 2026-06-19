@@ -9,7 +9,7 @@ export const siteData = {
   ],
   sideNavigationDocs: [
     { label: "Introduction", href: "/docs" },
-    { label: "Installation", href: "/docs/components" },
+    { label: "Installation", href: "/docs/installation" },
     { label: "Components", href: "/docs/components" },
   ],
   componentsList: [
@@ -18,6 +18,10 @@ export const siteData = {
     { label: "Tabs", href: "/tabs" },
     { label: "Breadcrumbs", href: "/breadcrumbs" },
     { label: "Alert", href: "/alert" },
+    { label: "Card", href: "/card" },
+    { label: "Dropdown", href: "/dropdown" },
+    { label: "Accordion", href: "/accordion" },
+    { label: "Bento Grid", href: "/bento-grid" },
     { label: "Modal", href: "/modal" },
     { label: "Mockup", href: "/mockup" },
   ],

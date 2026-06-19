@@ -20,7 +20,7 @@ const { items, class: className = "" } = Astro.props;
         {item.href ? (
           <a href={item.href} class="text-sm text-black-onyx/60 hover:text-black-onyx transition-colors">{item.label}</a>
         ) : (
-          <span class="text-sm text-black-onyx font-medium">{item.label}</span>
+          <span class="text-sm text-black-onyx font-medium" aria-current="page">{item.label}</span>
         )}
       </li>
     ))}
