@@ -6,13 +6,17 @@ import Breadcrumbs from "../../../components/Breadcrumbs.astro";
 import Card from "../../../components/Card.astro";
 import CodeBlock from "../../../components/CodeBlock.astro";
 import CardSource from "../../../components/Card.astro?raw";
+import Desktop from "../../../images/desktop.png";
+import Bedroom from "../../../images/cozy-bedroom.png";
 
-const usageVertical = `<Card variant="vertical" imageSrc="https://picsum.photos/seed/laptop/800/400" imageAlt="Laptop" imageWidth={800} imageHeight={400}>
+const usageVertical = `<Card variant="vertical" imageSrc={Desktop} imageAlt="Desktop" imageWidth={800} imageHeight={400}>
   <h3>Card Title</h3>
   <p>Card description here.</p>
 </Card>`;
 
-const usageBordered = `<Card variant="bordered">
+const usageBordered = `import Desktop from "../../../images/desktop.png";
+
+<Card variant="bordered">
   <h3>Bordered Card</h3>
   <p>Minimalist card with thick border.</p>
 </Card>`;
@@ -47,15 +51,14 @@ const usageBordered = `<Card variant="bordered">
         <h4 class="preview-heading">Vertical / Default</h4>
         <Card
           variant="vertical"
-          imageSrc="https://picsum.photos/seed/laptop/800/400"
-          imageAlt="Laptop workspace"
+          imageSrc={Desktop}
+          imageAlt="Desktop workspace"
           imageWidth={800}
           imageHeight={400}
         >
-          <h3 class="font-medium text-black-onyx">MacBook Pro</h3>
+          <h3 class="font-medium text-black-onyx">Desktop</h3>
           <p class="text-sm text-black-onyx/60 mt-1">
-            Powerful laptop for developers with M3 chip and 18-hour battery
-            life.
+            Clean and minimal desktop setup for focused work.
           </p>
         </Card>
       </div>
@@ -63,8 +66,8 @@ const usageBordered = `<Card variant="bordered">
         <h4 class="preview-heading">Horizontal</h4>
         <Card
           variant="horizontal"
-          imageSrc="https://picsum.photos/seed/coding/400/400"
-          imageAlt="Code editor"
+          imageSrc={Bedroom}
+          imageAlt="Cozy bedroom"
           imageWidth={400}
           imageHeight={400}
         >

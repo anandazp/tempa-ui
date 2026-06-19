@@ -18,23 +18,33 @@ const {
   imageHeight,
   class: className = "",
 } = Astro.props;
+
+const baseClasses = "bg-white-ghost rounded overflow-hidden max-w-md";
+
+const variantClasses = {
+  vertical: "flex flex-col",
+  horizontal: "flex flex-col md:flex-row",
+  bordered: "border-2 border-black-onyx/20",
+  shadowed: "shadow-lg shadow-black-onyx/10",
+};
 ---
 
-<div class={`card card-${variant} ${className}`}>
+<div class={`${baseClasses} ${variantClasses[variant]} ${className}`}>
   {
     (variant === "vertical" || variant === "horizontal") && imageSrc && (
-      <div class="card-image">
+      <div class:list={["bg-black-onyx/10", variant === "horizontal" && "md:w-48 md:shrink-0"]}>
         <Image
           src={imageSrc}
           alt={imageAlt}
           width={imageWidth}
           height={imageHeight}
+          class="w-full h-full object-cover"
           loading="lazy"
         />
       </div>
     )
   }
-  <div class="card-body">
+  <div class="p-4">
     <slot />
   </div>
 </div>
