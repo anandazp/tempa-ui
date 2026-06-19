@@ -1,0 +1,203 @@
+---
+import { siteData } from "../../../data/site";
+
+import DocsLayout from "../../../layouts/DocsLayout.astro";
+import BentoGrid from "../../../components/BentoGrid.astro";
+import CodeBlock from "../../../components/CodeBlock.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import BentoGridSource from "../../../components/BentoGrid.astro?raw";
+import Desktop from "../../../images/desktop.png";
+
+const usageCode = `<BentoGrid
+  items={[
+    { title: "Feature A", description: "Description", size: "featured" },
+    { title: "Feature B", description: "Description", size: "lg" },
+    { title: "Feature C", description: "Description", size: "sm" },
+    { title: "Feature D", description: "Description", size: "sm" },
+    { title: "Feature E", description: "Description", size: "md" },
+  ]}
+/>`;
+
+const usageImageCode = `<BentoGrid
+  items={[
+    { title: "With Image", description: "This card uses a background image", size: "featured", imageSrc: Desktop },
+    { title: "Normal", description: "Regular card", size: "sm" },
+    { title: "Normal", description: "Regular card", size: "sm" },
+    { title: "Normal", description: "Regular card", size: "sm" },
+    { title: "Normal", description: "Regular card", size: "md" },
+  ]}
+/>`;
+---
+
+<DocsLayout title=`Bento Grid | ${siteData.brand}`>
+  <section>
+    <div class="space-y-1">
+      <Breadcrumbs
+        items={[
+          { label: "Docs", href: "/docs" },
+          { label: "Components", href: "/components" },
+          { label: "Bento Grid" },
+        ]}
+      />
+      <h2 class="section-title">Bento Grid</h2>
+      <p class="section-description">
+        Asymmetric grid layout for showcasing content in varied tile sizes.
+      </p>
+    </div>
+
+    <h3 class="section-subtitle">Code</h3>
+    <CodeBlock
+      code={BentoGridSource}
+      showLineNumbers={true}
+      fileName="components/BentoGrid.astro"
+    />
+
+    <h3 class="section-subtitle">Preview</h3>
+    <div class="flex flex-col gap-5">
+      <div class="preview-wrapper">
+        <h4 class="preview-heading">Default Bento Grid</h4>
+        <BentoGrid
+          items={[
+            { title: "Lightweight", description: "Only 15KB minified. No bloat, no unnecessary dependencies.", size: "featured", class: "bg-blue-bell text-white-ghost" },
+            { title: "Copy-Paste", description: "No npm install. Copy the code and paste it directly.", size: "sm" },
+            { title: "Customizable", description: "CSS variables for every component.", size: "sm" },
+            { title: "Responsive", description: "Mobile-first design. Works on every screen size.", size: "lg", class: "bg-black-onyx/5" },
+          ]}
+        />
+      </div>
+    </div>
+
+      <div class="preview-wrapper">
+        <h4 class="preview-heading">With Background Image</h4>
+        <BentoGrid
+          items={[
+            { title: "Desktop Setup", description: "Clean workspace for focused development.", size: "featured", imageSrc: Desktop },
+            { title: "Minimal", description: "Less is more.", size: "sm", class: "bg-blue-bell/10 text-black-onyx" },
+            { title: "Clean", description: "Organized and tidy.", size: "sm", class: "bg-green-400 text-white-ghost" },
+            { title: "Modern", description: "Contemporary design.", size: "sm", class: "bg-blue-bell/10 text-black-onyx" },
+            { title: "Productive", description: "Built for efficiency.", size: "sm", class: "bg-black-onyx/5" },
+          ]}
+        />
+      </div>
+    </div>
+
+    <h3 class="section-subtitle">Usage</h3>
+    <CodeBlock language="javascript" code={usageCode} showLineNumbers={true} />
+    <CodeBlock language="javascript" code={usageImageCode} showLineNumbers={true} />
+
+    <h3 class="section-subtitle">Props</h3>
+    <div class="overflow-x-auto">
+      <table class="props-table">
+        <thead>
+          <tr class="tr-head">
+            <th class="th-cell">Prop</th>
+            <th class="th-cell">Type</th>
+            <th class="th-cell">Default</th>
+            <th class="th-desc">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">items</td>
+            <td class="td-cell prop-type">BentoItem[]</td>
+            <td class="td-cell">—</td>
+            <td class="td-desc">Array of grid items with title, description, size, imageSrc, and optional class.</td>
+          </tr>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">class</td>
+            <td class="td-cell prop-type">string</td>
+            <td class="td-cell">—</td>
+            <td class="td-desc">Additional CSS classes.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="section-subtitle">Item Fields</h3>
+    <div class="overflow-x-auto">
+      <table class="props-table">
+        <thead>
+          <tr class="tr-head">
+            <th class="th-cell">Field</th>
+            <th class="th-cell">Type</th>
+            <th class="th-cell">Default</th>
+            <th class="th-desc">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">title</td>
+            <td class="td-cell prop-type">string</td>
+            <td class="td-cell">—</td>
+            <td class="td-desc">Card title.</td>
+          </tr>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">description</td>
+            <td class="td-cell prop-type">string</td>
+            <td class="td-cell">—</td>
+            <td class="td-desc">Optional description text.</td>
+          </tr>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">size</td>
+            <td class="td-cell prop-type">"sm" | "md" | "lg" | "featured"</td>
+            <td class="td-cell prop-type">"sm"</td>
+            <td class="td-desc">Grid span size.</td>
+          </tr>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">imageSrc</td>
+            <td class="td-cell prop-type">ImageMetadata | string</td>
+            <td class="td-cell">—</td>
+            <td class="td-desc">Background image (imported or URL).</td>
+          </tr>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">imageOverlay</td>
+            <td class="td-cell prop-type">boolean</td>
+            <td class="td-cell prop-type">true</td>
+            <td class="td-desc">Dark overlay for text readability.</td>
+          </tr>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">class</td>
+            <td class="td-cell prop-type">string</td>
+            <td class="td-cell">—</td>
+            <td class="td-desc">Custom background/text color (ignored when imageSrc is set).</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="section-subtitle">Item Sizes</h3>
+    <div class="overflow-x-auto">
+      <table class="props-table">
+        <thead>
+          <tr class="tr-head">
+            <th class="th-cell">Size</th>
+            <th class="th-cell">Mobile</th>
+            <th class="th-cell">Desktop</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">sm</td>
+            <td class="td-cell">1 col</td>
+            <td class="td-cell">1 col × 1 row</td>
+          </tr>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">md</td>
+            <td class="td-cell">1 col</td>
+            <td class="td-cell">1 col × 2 rows</td>
+          </tr>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">lg</td>
+            <td class="td-cell">1 col</td>
+            <td class="td-cell">2 cols × 1 row</td>
+          </tr>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">featured</td>
+            <td class="td-cell">1 col</td>
+            <td class="td-cell">2 cols × 2 rows</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</DocsLayout>

@@ -1,0 +1,94 @@
+---
+interface AccordionItem {
+  title: string;
+  content: string;
+}
+
+interface Props {
+  items: AccordionItem[];
+  class?: string;
+}
+
+const {
+  items,
+  class: className = "",
+} = Astro.props;
+---
+
+<div class:list={["accordion divide-y divide-black-onyx/10 border border-black-onyx/10 rounded overflow-hidden", className]}>
+  {items.map((item, i) => (
+    <div class="accordion-item">
+      <button
+        class="accordion-header flex items-center justify-between w-full px-4 py-3 text-sm font-medium text-black-onyx hover:bg-black-onyx/5 transition-colors cursor-pointer text-left"
+        id={`accordion-header-${i}`}
+        aria-expanded={i === 0}
+        aria-controls={`accordion-panel-${i}`}
+      >
+        {item.title}
+        <svg aria-hidden="true" class="accordion-arrow shrink-0 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256">
+          <path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80a8,8,0,0,1,11.32-11.32L128,165.05l74.34-74.35a8,8,0,0,1,11.32,11.32Z"></path>
+        </svg>
+      </button>
+      <div
+        id={`accordion-panel-${i}`}
+        role="region"
+        aria-labelledby={`accordion-header-${i}`}
+        class="accordion-panel overflow-hidden transition-all duration-300 ease-in-out"
+        style={i === 0 ? `max-height: ${items[i].content.length * 2}px; opacity: 1;` : "max-height: 0; opacity: 0;"}
+      >
+        <div class="px-4 py-3 text-sm text-black-onyx/80">
+          {item.content}
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
+
+<script>
+  document.querySelectorAll(".accordion").forEach((accordion) => {
+    const panels = accordion.querySelectorAll(".accordion-panel");
+    const headers = accordion.querySelectorAll(".accordion-header");
+    const arrows = accordion.querySelectorAll(".accordion-arrow");
+
+    headers.forEach((header, i) => {
+      const panel = panels[i];
+      const inner = panel.querySelector("div");
+
+      function togglePanel(open) {
+        if (open) {
+          panel.style.maxHeight = inner.scrollHeight + 24 + "px";
+          panel.style.opacity = "1";
+          header.setAttribute("aria-expanded", "true");
+          arrows[i]?.classList.add("rotate-180");
+        } else {
+          panel.style.maxHeight = "0";
+          panel.style.opacity = "0";
+          header.setAttribute("aria-expanded", "false");
+          arrows[i]?.classList.remove("rotate-180");
+        }
+      }
+
+      header.addEventListener("click", () => {
+        const isOpen = panel.style.opacity === "1";
+
+        // Close all panels
+        panels.forEach((p, j) => {
+          p.style.maxHeight = "0";
+          p.style.opacity = "0";
+          headers[j].setAttribute("aria-expanded", "false");
+          arrows[j]?.classList.remove("rotate-180");
+        });
+
+        // Open clicked panel if it was closed
+        if (!isOpen) togglePanel(true);
+      });
+
+      header.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          header.click();
+        }
+      });
+    });
+  });
+</script>

@@ -1,0 +1,204 @@
+---
+interface DropdownItem {
+  label: string;
+  href?: string;
+  onClick?: string;
+}
+
+interface Props {
+  items: DropdownItem[];
+  trigger?: "click" | "hover";
+  label?: string;
+  class?: string;
+}
+
+const {
+  items,
+  trigger = "click",
+  label = "Dropdown",
+  class: className = "",
+} = Astro.props;
+
+const menuId = `dropdown-menu-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<div
+  class:list={["dropdown relative inline-block", trigger === "hover" && "dropdown-hover", className]}
+>
+  <button
+    class="dropdown-trigger flex items-center gap-2 px-4 py-2 text-sm bg-black-onyx text-white-ghost rounded hover:bg-black-onyx/90 transition-colors cursor-pointer"
+    aria-haspopup="true"
+    aria-expanded="false"
+    aria-controls={menuId}
+  >
+    {label}
+    <svg aria-hidden="true" class="dropdown-arrow transition-transform" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256">
+      <path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80a8,8,0,0,1,11.32-11.32L128,165.05l74.34-74.35a8,8,0,0,1,11.32,11.32Z"></path>
+    </svg>
+  </button>
+  <div
+    id={menuId}
+    role="menu"
+    class="dropdown-menu absolute left-0 top-full mt-1 min-w-40 bg-white-ghost border border-black-onyx/10 rounded shadow-lg shadow-black-onyx/10 opacity-0 invisible translate-y-1 transition-all duration-200 z-50"
+  >
+    <ul class="py-1">
+      {items.map((item) => (
+        <li role="none">
+          {item.href ? (
+            <a
+              href={item.href}
+              role="menuitem"
+              class="block px-4 py-2 text-sm text-black-onyx/80 hover:bg-black-onyx/5 hover:text-black-onyx transition-colors"
+            >
+              {item.label}
+            </a>
+          ) : (
+            <button
+              role="menuitem"
+              class="w-full text-left block px-4 py-2 text-sm text-black-onyx/80 hover:bg-black-onyx/5 hover:text-black-onyx transition-colors cursor-pointer"
+              onclick={item.onClick}
+            >
+              {item.label}
+            </button>
+          )}
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>
+
+<script>
+  function openMenu(dropdown) {
+    const trigger = dropdown.querySelector(".dropdown-trigger");
+    const menu = dropdown.querySelector(".dropdown-menu");
+    const arrow = dropdown.querySelector(".dropdown-arrow");
+    menu.classList.add("opacity-100", "visible", "translate-y-0");
+    menu.classList.remove("translate-y-1");
+    arrow?.classList.add("rotate-180");
+    trigger?.setAttribute("aria-expanded", "true");
+    const firstItem = menu.querySelector('[role="menuitem"]');
+    firstItem?.focus();
+  }
+
+  function closeMenu(dropdown) {
+    const trigger = dropdown.querySelector(".dropdown-trigger");
+    const menu = dropdown.querySelector(".dropdown-menu");
+    const arrow = dropdown.querySelector(".dropdown-arrow");
+    menu.classList.remove("opacity-100", "visible", "translate-y-0");
+    menu.classList.add("translate-y-1");
+    arrow?.classList.remove("rotate-180");
+    trigger?.setAttribute("aria-expanded", "false");
+  }
+
+  function isOpen(dropdown) {
+    const menu = dropdown.querySelector(".dropdown-menu");
+    return menu.classList.contains("opacity-100");
+  }
+
+  // Click trigger
+  document.querySelectorAll(".dropdown:not(.dropdown-hover)").forEach((dropdown) => {
+    const trigger = dropdown.querySelector(".dropdown-trigger");
+    const menu = dropdown.querySelector(".dropdown-menu");
+
+    trigger?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (isOpen(dropdown)) {
+        closeMenu(dropdown);
+      } else {
+        // Close other open dropdowns
+        document.querySelectorAll(".dropdown:not(.dropdown-hover)").forEach((d) => {
+          if (d !== dropdown) closeMenu(d);
+        });
+        openMenu(dropdown);
+      }
+    });
+
+    document.addEventListener("click", () => {
+      closeMenu(dropdown);
+    });
+
+    // Keyboard nav within menu
+    dropdown.addEventListener("keydown", (e) => {
+      if (!isOpen(dropdown)) return;
+      const items = menu.querySelectorAll('[role="menuitem"]');
+      const current = Array.from(items).indexOf(document.activeElement);
+
+      if (e.key === "Escape") {
+        e.preventDefault();
+        closeMenu(dropdown);
+        trigger?.focus();
+      } else if (e.key === "ArrowDown") {
+        e.preventDefault();
+        const next = (current + 1) % items.length;
+        items[next]?.focus();
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        const prev = (current - 1 + items.length) % items.length;
+        items[prev]?.focus();
+      } else if (e.key === "Home") {
+        e.preventDefault();
+        items[0]?.focus();
+      } else if (e.key === "End") {
+        e.preventDefault();
+        items[items.length - 1]?.focus();
+      }
+    });
+  });
+
+  // Hover trigger — add focus/keyboard support
+  document.querySelectorAll(".dropdown-hover").forEach((dropdown) => {
+    const menu = dropdown.querySelector(".dropdown-menu");
+    const arrow = dropdown.querySelector(".dropdown-arrow");
+    let timeout;
+
+    function show() {
+      clearTimeout(timeout);
+      menu.classList.add("opacity-100", "visible", "translate-y-0");
+      menu.classList.remove("translate-y-1");
+      arrow?.classList.add("rotate-180");
+      dropdown.querySelector(".dropdown-trigger")?.setAttribute("aria-expanded", "true");
+    }
+
+    function hide() {
+      timeout = setTimeout(() => {
+        menu.classList.remove("opacity-100", "visible", "translate-y-0");
+        menu.classList.add("translate-y-1");
+        arrow?.classList.remove("rotate-180");
+        dropdown.querySelector(".dropdown-trigger")?.setAttribute("aria-expanded", "false");
+      }, 150);
+    }
+
+    dropdown.addEventListener("mouseenter", show);
+    dropdown.addEventListener("mouseleave", hide);
+
+    // Focus-in / focus-out for keyboard users
+    dropdown.querySelector(".dropdown-trigger")?.addEventListener("focus", show);
+    dropdown.querySelector(".dropdown-trigger")?.addEventListener("blur", (e) => {
+      if (!dropdown.contains(e.relatedTarget)) hide();
+    });
+    menu.addEventListener("focusin", show);
+    menu.addEventListener("focusout", (e) => {
+      if (!dropdown.contains(e.relatedTarget)) hide();
+    });
+
+    dropdown.addEventListener("keydown", (e) => {
+      if (!isOpen(dropdown)) return;
+      const items = menu.querySelectorAll('[role="menuitem"]');
+      const current = Array.from(items).indexOf(document.activeElement);
+
+      if (e.key === "Escape") {
+        e.preventDefault();
+        hide();
+        dropdown.querySelector(".dropdown-trigger")?.focus();
+      } else if (e.key === "ArrowDown") {
+        e.preventDefault();
+        const next = (current + 1) % items.length;
+        items[next]?.focus();
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        const prev = (current - 1 + items.length) % items.length;
+        items[prev]?.focus();
+      }
+    });
+  });
+</script>

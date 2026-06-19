@@ -1,0 +1,126 @@
+---
+import { siteData } from "../../../data/site";
+
+import DocsLayout from "../../../layouts/DocsLayout.astro";
+import Dropdown from "../../../components/Dropdown.astro";
+import CodeBlock from "../../../components/CodeBlock.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import DropdownSource from "../../../components/Dropdown.astro?raw";
+
+const clickCode = `<Dropdown
+  trigger="click"
+  label="Menu"
+  items={[
+    { label: "Profile", href: "#" },
+    { label: "Settings", href: "#" },
+    { label: "Logout", href: "#" },
+  ]}
+/>`;
+
+const hoverCode = `<Dropdown
+  trigger="hover"
+  label="Hover"
+  items={[
+    { label: "Dashboard", href: "#" },
+    { label: "Projects", href: "#" },
+    { label: "Team", href: "#" },
+  ]}
+/>`;
+---
+
+<DocsLayout title=`Dropdown | ${siteData.brand}`>
+  <section>
+    <div class="space-y-1">
+      <Breadcrumbs
+        items={[
+          { label: "Docs", href: "/docs" },
+          { label: "Components", href: "/components" },
+          { label: "Dropdown" },
+        ]}
+      />
+      <h2 class="section-title">Dropdown</h2>
+      <p class="section-description">
+        Toggleable menu for actions and links.
+      </p>
+    </div>
+
+    <h3 class="section-subtitle">Code</h3>
+    <CodeBlock
+      code={DropdownSource}
+      showLineNumbers={true}
+      fileName="components/Dropdown.astro"
+    />
+
+    <h3 class="section-subtitle">Preview</h3>
+    <div class="flex flex-col gap-5">
+      <div class="preview-wrapper">
+        <h4 class="preview-heading">Click Trigger</h4>
+        <Dropdown
+          trigger="click"
+          label="Menu"
+          items={[
+            { label: "Profile", href: "#" },
+            { label: "Settings", href: "#" },
+            { label: "Logout", href: "#" },
+          ]}
+        />
+      </div>
+      <div class="preview-wrapper">
+        <h4 class="preview-heading">Hover Trigger</h4>
+        <Dropdown
+          trigger="hover"
+          label="Hover"
+          items={[
+            { label: "Dashboard", href: "#" },
+            { label: "Projects", href: "#" },
+            { label: "Team", href: "#" },
+          ]}
+        />
+      </div>
+    </div>
+
+    <h3 class="section-subtitle">Usage</h3>
+    <CodeBlock language="javascript" code={clickCode} showLineNumbers={true} />
+    <CodeBlock language="javascript" code={hoverCode} showLineNumbers={true} />
+
+    <h3 class="section-subtitle">Props</h3>
+    <div class="overflow-x-auto">
+      <table class="props-table">
+        <thead>
+          <tr class="tr-head">
+            <th class="th-cell">Prop</th>
+            <th class="th-cell">Type</th>
+            <th class="th-cell">Default</th>
+            <th class="th-desc">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">items</td>
+            <td class="td-cell prop-type">DropdownItem[]</td>
+            <td class="td-cell">—</td>
+            <td class="td-desc">Array of menu items with label and optional href or onClick.</td>
+          </tr>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">trigger</td>
+            <td class="td-cell prop-type">"click" | "hover"</td>
+            <td class="td-cell prop-type">"click"</td>
+            <td class="td-desc">How the dropdown opens.</td>
+          </tr>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">label</td>
+            <td class="td-cell prop-type">string</td>
+            <td class="td-cell prop-type">"Dropdown"</td>
+            <td class="td-desc">Trigger button label.</td>
+          </tr>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">class</td>
+            <td class="td-cell prop-type">string</td>
+            <td class="td-cell">—</td>
+            <td class="td-desc">Additional CSS classes.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</DocsLayout>
