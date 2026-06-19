@@ -10,15 +10,17 @@ import { searchIndex } from "../data/search";
       {/* Mobile Toggle Button */}
       <button
         id="menu-btn"
-        class="md:hidden w-6 h-6 flex flex-col justify-center items-center gap-1.5 focus:outline-none"
+        class="md:hidden w-6 h-6 flex flex-col justify-center items-center gap-1.5 focus-visible:ring-2 focus-visible:ring-black-onyx focus:outline-none"
         aria-label="Menu"
+        aria-expanded="false"
+        aria-controls="mobile-sidebar"
       >
         <span
           id="menu-icon-line1"
-          class="w-5 h-0.5 bg-black-onyx transition-all duration-300"></span>
+          class="w-5 h-0.5 bg-black-onyx transition-all duration-300" aria-hidden="true"></span>
         <span
           id="menu-icon-line2"
-          class="w-5 h-0.5 bg-black-onyx transition-all duration-300"></span>
+          class="w-5 h-0.5 bg-black-onyx transition-all duration-300" aria-hidden="true"></span>
       </button>
       {/* Logo / Brand */}
       <a href="/" class="text-lg font-medium tracking-tight">
@@ -40,6 +42,7 @@ import { searchIndex } from "../data/search";
         class="hidden lg:flex items-center gap-2 ml-auto text-sm text-black-onyx/50 hover:text-black-onyx/90 bg-black-onyx/5 hover:bg-black-onyx/10 rounded-lg px-3 py-1.5 transition-colors cursor-pointer group"
       >
         <svg
+          aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           width="16"
           height="16"
@@ -65,12 +68,16 @@ import { searchIndex } from "../data/search";
   {/* Mobile Sidebar */}
   <div
     id="mobile-sidebar"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Navigation menu"
     class="fixed top-0 left-0 h-full w-64 bg-white shadow-xl z-50 transform -translate-x-full transition-transform duration-300 ease-in-out"
   >
     <div class="p-6">
       {/* Close button inside sidebar (opsional) */}
-      <button id="sidebar-close" class="mb-8 text-gray-500 hover:text-gray-800">
+      <button id="sidebar-close" class="mb-8 text-gray-500 hover:text-gray-800" aria-label="Close menu">
         <svg
+          aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           width="20"
           height="20"
@@ -103,6 +110,8 @@ import { searchIndex } from "../data/search";
   {/* Overlay (gelap di belakang sidebar) */}
   <div
     id="overlay"
+    role="presentation"
+    aria-hidden="true"
     class="fixed inset-0 bg-black/50 z-40 hidden transition-opacity duration-300"
   >
   </div>
@@ -110,10 +119,13 @@ import { searchIndex } from "../data/search";
   {/* Search Modal */}
   <div
     id="search-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Search documentation"
     class="fixed inset-0 z-50 hidden items-start justify-center pt-[15vh]"
   >
     {/* Backdrop */}
-    <div id="search-backdrop" class="absolute inset-0 bg-black-onyx/60"></div>
+    <div id="search-backdrop" class="absolute inset-0 bg-black-onyx/60" aria-hidden="true"></div>
 
     {/* Panel */}
     <div
@@ -122,6 +134,7 @@ import { searchIndex } from "../data/search";
       {/* Input */}
       <div class="flex items-center gap-3 px-4 border-b border-black-onyx/10">
         <svg
+          aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           width="18"
           height="18"
@@ -137,7 +150,7 @@ import { searchIndex } from "../data/search";
           id="search-input"
           type="text"
           placeholder="Search pages..."
-          class="flex-1 py-3.5 bg-transparent text-sm text-black-onyx outline-none placeholder:text-black-onyx/30"
+          class="flex-1 py-3.5 bg-transparent text-sm text-black-onyx focus-visible:ring-2 focus-visible:ring-black-onyx/30 rounded outline-none placeholder:text-black-onyx/30"
           autocomplete="off"
           autocorrect="off"
           spellcheck="false"
@@ -148,6 +161,7 @@ import { searchIndex } from "../data/search";
           aria-label="Close search"
         >
           <svg
+            aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             width="18"
             height="18"
@@ -191,6 +205,7 @@ import { searchIndex } from "../data/search";
       overlay?.classList.remove("hidden");
       document.body.style.overflow = "hidden";
       isOpen = true;
+      menuBtn?.setAttribute("aria-expanded", "true");
     }
 
     function closeMenu() {
@@ -199,6 +214,8 @@ import { searchIndex } from "../data/search";
       overlay?.classList.add("hidden");
       document.body.style.overflow = "";
       isOpen = false;
+      menuBtn?.setAttribute("aria-expanded", "false");
+      menuBtn?.focus();
     }
 
     menuBtn?.addEventListener("click", function () {
@@ -207,6 +224,10 @@ import { searchIndex } from "../data/search";
     });
     if (sidebarClose) sidebarClose.addEventListener("click", closeMenu);
     overlay?.addEventListener("click", closeMenu);
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && isOpen) closeMenu();
+    });
 
     window.addEventListener("resize", function () {
       if (window.innerWidth >= 768 && isOpen) closeMenu();
@@ -387,12 +408,27 @@ import { searchIndex } from "../data/search";
         e.preventDefault();
         selectedIndex = Math.max(selectedIndex - 1, 0);
         updateSelection(items);
+      } else if (e.key === "Tab") {
+        if (e.shiftKey && document.activeElement === input) {
+          e.preventDefault();
+          closeBtn.focus();
+        } else if (!e.shiftKey && document.activeElement === closeBtn) {
+          e.preventDefault();
+          input.focus();
+        }
       } else if (
         e.key === "Enter" &&
         selectedIndex >= 0 &&
         items[selectedIndex]
       ) {
         window.location.href = items[selectedIndex].getAttribute("href");
+      }
+    });
+
+    closeBtn.addEventListener("keydown", function (e) {
+      if (e.key === "Tab" && !e.shiftKey) {
+        e.preventDefault();
+        input.focus();
       }
     });
 

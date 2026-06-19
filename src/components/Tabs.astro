@@ -17,26 +17,34 @@ const {
 ---
 
 <div class={`tabs ${className}`}>
-  <div class="flex border-b border-black-onyx/10" role="tablist">
+  <div class="flex border-b border-black-onyx/10" role="tablist" aria-label="Content tabs">
     {tabs.map((tab, i) => (
       <button
         class={`tab-btn px-4 py-2 text-sm text-black-onyx/60 hover:text-black-onyx transition-colors ${i === activeIndex ? "tab-btn-active text-black-onyx font-medium border-b-2 border-black-onyx" : ""}`}
         role="tab"
+        id={`tab-${i}`}
         aria-selected={i === activeIndex}
+        aria-controls={`tabpanel-${i}`}
+        tabindex={i === activeIndex ? 0 : -1}
       >
         {tab.label}
       </button>
     ))}
   </div>
-  <div class="mt-4">
+  <div
+    role="tabpanel"
+    id={`tabpanel-0`}
+    aria-labelledby={`tab-0`}
+    data-tab-panel
+  >
     <slot />
   </div>
 </div>
 
 <script>
-  document.querySelectorAll(".tabs").forEach((tabs) => {
-    const tabButtons = tabs.querySelectorAll(".tab-btn");
-    const panels = tabs.querySelectorAll("[data-tab-panel]");
+  document.querySelectorAll(".tabs").forEach((tabsEl) => {
+    const tabButtons = tabsEl.querySelectorAll('[role="tab"]');
+    const panels = tabsEl.querySelectorAll('[data-tab-panel]');
 
     function activateTab(index) {
       tabButtons.forEach((btn, i) => {
@@ -47,19 +55,43 @@ const {
         btn.classList.toggle("border-b-2", isActive);
         btn.classList.toggle("border-black-onyx", isActive);
         btn.setAttribute("aria-selected", isActive);
+        btn.setAttribute("tabindex", isActive ? "0" : "-1");
+        btn.setAttribute("aria-controls", `tabpanel-${i}`);
       });
       panels.forEach((panel, i) => {
-        panel.classList.toggle("active", i === index);
+        panel.id = `tabpanel-${i}`;
+        panel.setAttribute("aria-labelledby", `tab-${i}`);
         panel.style.display = i === index ? "block" : "none";
       });
     }
 
-    const activeBtn = tabs.querySelector(".tab-btn-active");
+    const activeBtn = tabsEl.querySelector(".tab-btn-active");
     const initialIndex = activeBtn ? Array.from(tabButtons).indexOf(activeBtn) : 0;
     activateTab(initialIndex);
 
     tabButtons.forEach((btn, i) => {
       btn.addEventListener("click", () => activateTab(i));
+    });
+
+    tabsEl.addEventListener("keydown", (e) => {
+      const current = Array.from(tabButtons).findIndex((btn) => btn.getAttribute("aria-selected") === "true");
+      let next = current;
+
+      if (e.key === "ArrowRight") {
+        next = (current + 1) % tabButtons.length;
+      } else if (e.key === "ArrowLeft") {
+        next = (current - 1 + tabButtons.length) % tabButtons.length;
+      } else if (e.key === "Home") {
+        next = 0;
+      } else if (e.key === "End") {
+        next = tabButtons.length - 1;
+      }
+
+      if (next !== current) {
+        e.preventDefault();
+        activateTab(next);
+        tabButtons[next]?.focus();
+      }
     });
   });
 </script>

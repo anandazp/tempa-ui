@@ -26,6 +26,7 @@ const hasLines = showLineNumbers && codeLines.length > 1;
   >
     {/* Icon Default (Clipboard) */}
     <svg
+      aria-hidden="true"
       class="copy-icon-default w-5 h-5 text-white-ghost transition-all duration-200"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
@@ -42,6 +43,7 @@ const hasLines = showLineNumbers && codeLines.length > 1;
 
     {/* Icon Success (Checkmark) - hidden by default */}
     <svg
+      aria-hidden="true"
       class="copy-icon-success w-5 h-5 text-green-400 hidden transition-all duration-200"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
