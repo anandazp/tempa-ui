@@ -2,6 +2,8 @@
 // src/components/Navbar.astro
 import { siteData } from "../data/site";
 import { searchIndex } from "../data/search";
+
+const searchData = JSON.stringify(searchIndex);
 ---
 
 <header class="bg-white-ghost border-b border-gray-200 sticky top-0 z-50">
@@ -123,6 +125,7 @@ import { searchIndex } from "../data/search";
     aria-modal="true"
     aria-label="Search documentation"
     class="fixed inset-0 z-50 hidden items-start justify-center pt-[15vh]"
+    data-search-index={searchData}
   >
     {/* Backdrop */}
     <div id="search-backdrop" class="absolute inset-0 bg-black-onyx/60" aria-hidden="true"></div>
@@ -236,7 +239,7 @@ import { searchIndex } from "../data/search";
 
   // --- Search ---
   (function () {
-    const index = searchIndex;
+    const index = JSON.parse(document.getElementById("search-modal").dataset.searchIndex || "[]");
 
     const trigger = document.getElementById("search-trigger");
     const modal = document.getElementById("search-modal");
