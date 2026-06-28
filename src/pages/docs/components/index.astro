@@ -1,131 +1,28 @@
 ---
-import { siteData } from "../../../data/site";
+import { components } from "../../../data/components";
 import DocsLayout from "../../../layouts/DocsLayout.astro";
 import Breadcrumbs from "../../../components/Breadcrumbs.astro";
 ---
 
-<DocsLayout title={`Components | ${siteData.brand}`}>
+<DocsLayout title="Components | Tempa UI">
   <section>
     <div class="space-y-1">
       <Breadcrumbs
         items={[{ label: "Docs", href: "/docs" }, { label: "Components" }]}
       />
       <h2 class="section-title">Components</h2>
-      <p class="section-description">All available UI components.</p>
+      <p class="section-description">Here you can find all the components that available. We are still working to adding more components.</p>
     </div>
 
-    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-6">
-      <a
-        href="/docs/components/accordion"
-        class="bg-white-ghost rounded overflow-hidden border-2 border-black-onyx/20 shadow-lg shadow-black-onyx/10 block p-4 hover:border-blue-bell transition-colors"
-      >
-        <h3 class="font-semibold text-lg">Accordion</h3>
-        <p class="text-sm text-black-onyx/80 mt-1">
-          Expandable content panels for FAQs.
-        </p>
-      </a>
-      <a
-        href="/docs/components/alert"
-        class="bg-white-ghost rounded overflow-hidden border-2 border-black-onyx/20 shadow-lg shadow-black-onyx/10 block p-4 hover:border-blue-bell transition-colors"
-      >
-        <h3 class="font-semibold text-lg">Alert</h3>
-        <p class="text-sm text-black-onyx/80 mt-1">
-          Alert messages with variants.
-        </p>
-      </a>
-      <a
-        href="/docs/components/bento-grid"
-        class="bg-white-ghost rounded overflow-hidden border-2 border-black-onyx/20 shadow-lg shadow-black-onyx/10 block p-4 hover:border-blue-bell transition-colors"
-      >
-        <h3 class="font-semibold text-lg">Bento Grid</h3>
-        <p class="text-sm text-black-onyx/80 mt-1">
-          Asymmetric grid layout for varied tile sizes.
-        </p>
-      </a>
-      <a
-        href="/docs/components/breadcrumbs"
-        class="bg-white-ghost rounded overflow-hidden border-2 border-black-onyx/20 shadow-lg shadow-black-onyx/10 block p-4 hover:border-blue-bell transition-colors"
-      >
-        <h3 class="font-semibold text-lg">Breadcrumbs</h3>
-        <p class="text-sm text-black-onyx/80 mt-1">
-          Navigation breadcrumb trail.
-        </p>
-      </a>
-      <a
-        href="/docs/components/bubble-chat"
-        class="bg-white-ghost rounded overflow-hidden border-2 border-black-onyx/20 shadow-lg shadow-black-onyx/10 block p-4 hover:border-blue-bell transition-colors"
-      >
-        <h3 class="font-semibold text-lg">Bubble Chat</h3>
-        <p class="text-sm text-black-onyx/80 mt-1">
-          Chat bubbles for sender and receiver.
-        </p>
-      </a>
-      <a
-        href="/docs/components/button"
-        class="bg-white-ghost rounded overflow-hidden border-2 border-black-onyx/20 shadow-lg shadow-black-onyx/10 block p-4 hover:border-blue-bell transition-colors"
-      >
-        <h3 class="font-semibold text-lg">Button</h3>
-        <p class="text-sm text-black-onyx/80 mt-1">
-          Button for cta, outline, and link.
-        </p>
-      </a>
-      <a
-        href="/docs/components/card"
-        class="bg-white-ghost rounded overflow-hidden border-2 border-black-onyx/20 shadow-lg shadow-black-onyx/10 block p-4 hover:border-blue-bell transition-colors"
-      >
-        <h3 class="font-semibold text-lg">Card</h3>
-        <p class="text-sm text-black-onyx/80 mt-1">
-          Content card with variants.
-        </p>
-      </a>
-      <a
-        href="/docs/components/dropdown"
-        class="bg-white-ghost rounded overflow-hidden border-2 border-black-onyx/20 shadow-lg shadow-black-onyx/10 block p-4 hover:border-blue-bell transition-colors"
-      >
-        <h3 class="font-semibold text-lg">Dropdown</h3>
-        <p class="text-sm text-black-onyx/80 mt-1">
-          Toggleable menu for actions and links.
-        </p>
-      </a>
-      <a
-        href="/docs/components/mockup"
-        class="bg-white-ghost rounded overflow-hidden border-2 border-black-onyx/20 shadow-lg shadow-black-onyx/10 block p-4 hover:border-blue-bell transition-colors"
-      >
-        <h3 class="font-semibold text-lg">Mockup</h3>
-        <p class="text-sm text-black-onyx/80 mt-1">Device frames to showcase content.</p>
-      </a>
-      <a
-        href="/docs/components/modal"
-        class="bg-white-ghost rounded overflow-hidden border-2 border-black-onyx/20 shadow-lg shadow-black-onyx/10 block p-4 hover:border-blue-bell transition-colors"
-      >
-        <h3 class="font-semibold text-lg">Modal</h3>
-        <p class="text-sm text-black-onyx/80 mt-1">Modal dialog overlay.</p>
-      </a>
-      <a
-        href="/docs/components/sidebar"
-        class="bg-white-ghost rounded overflow-hidden border-2 border-black-onyx/20 shadow-lg shadow-black-onyx/10 block p-4 hover:border-blue-bell transition-colors"
-      >
-        <h3 class="font-semibold text-lg">Sidebar</h3>
-        <p class="text-sm text-black-onyx/80 mt-1">
-          Collapsible sidebar navigation.
-        </p>
-      </a>
-      <a
-        href="/docs/components/tabs"
-        class="bg-white-ghost rounded overflow-hidden border-2 border-black-onyx/20 shadow-lg shadow-black-onyx/10 block p-4 hover:border-blue-bell transition-colors"
-      >
-        <h3 class="font-semibold text-lg">Tabs</h3>
-        <p class="text-sm text-black-onyx/80 mt-1">Tabbed content panels.</p>
-      </a>
-      <a
-        href="/docs/components/toast-notification"
-        class="bg-white-ghost rounded overflow-hidden border-2 border-black-onyx/20 shadow-lg shadow-black-onyx/10 block p-4 hover:border-blue-bell transition-colors"
-      >
-        <h3 class="font-semibold text-lg">Toast Notification</h3>
-        <p class="text-sm text-black-onyx/80 mt-1">
-          Fixed notification with auto-dismiss.
-        </p>
-      </a>
+    <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 mt-6">
+      {components.map((c) => (
+        <a
+          href={`/docs/components${c.href}`}
+          class="bg-white-ghost rounded overflow-hidden block hover:underline hover:underline-offset-4 transition-colors"
+        >
+          {c.label}
+        </a>
+      ))}
     </div>
   </section>
 </DocsLayout>

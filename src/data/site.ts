@@ -1,8 +1,10 @@
+import { components } from "./components";
+
 export const siteData = {
   brand: "Tempa UI",
-  tagline: "Simple UI for lazy developers",
+  tagline: "Simple UI for Lazy Developers",
   description:
-    "Free UI components built with Astro, Typescript and Tailwind CSS.",
+    "A collection of components that you can customize. Built with Astro, Typescript, and Tailwind CSS. Free & open source.",
   navigation: [
     { label: "Docs", href: "/docs" },
     { label: "Components", href: "/docs/components" },
@@ -12,19 +14,5 @@ export const siteData = {
     { label: "Installation", href: "/docs/installation" },
     { label: "Components", href: "/docs/components" },
   ],
-  componentsList: [
-    { label: "Button", href: "/button" },
-    { label: "Sidebar", href: "/sidebar" },
-    { label: "Tabs", href: "/tabs" },
-    { label: "Breadcrumbs", href: "/breadcrumbs" },
-    { label: "Alert", href: "/alert" },
-    { label: "Card", href: "/card" },
-    { label: "Dropdown", href: "/dropdown" },
-    { label: "Accordion", href: "/accordion" },
-    { label: "Bento Grid", href: "/bento-grid" },
-    { label: "Modal", href: "/modal" },
-    { label: "Mockup", href: "/mockup" },
-    { label: "Toast Notification", href: "/toast-notification" },
-    { label: "Bubble Chat", href: "/bubble-chat" },
-  ],
+  componentsList: components.map(({ label, href }) => ({ label, href })),
 };
