@@ -10,22 +10,21 @@ import Desktop from "../../../images/desktop.png";
 
 const usageCode = `<BentoGrid
   items={[
-    { title: "Feature A", description: "Description", size: "featured" },
-    { title: "Feature B", description: "Description", size: "lg" },
-    { title: "Feature C", description: "Description", size: "sm" },
-    { title: "Feature D", description: "Description", size: "sm" },
-    { title: "Feature E", description: "Description", size: "md" },
-  ]}
+    { title: "Lightweight", description: "Only 15KB minified. No bloat, no unnecessary dependencies.", size: "featured", class: "bg-blue-300 text-white-ghost" },
+    { title: "Copy-Paste", description: "No npm install. Copy the code and paste it directly.", size: "sm" },
+    { title: "Customizable", description: "CSS variables for every component.", size: "sm" },
+    { title: "Responsive", description: "Mobile-first design. Works on every screen size.", size: "lg", class: "bg-black-onyx/5" },
+    ]}
 />`;
 
 const usageImageCode = `<BentoGrid
   items={[
-    { title: "With Image", description: "This card uses a background image", size: "featured", imageSrc: Desktop },
-    { title: "Normal", description: "Regular card", size: "sm" },
-    { title: "Normal", description: "Regular card", size: "sm" },
-    { title: "Normal", description: "Regular card", size: "sm" },
-    { title: "Normal", description: "Regular card", size: "md" },
-  ]}
+    { title: "Desktop Setup", description: "Clean workspace for focused development.", size: "featured", imageSrc: Desktop },
+    { title: "Minimal", description: "Less is more.", size: "sm", class: "bg-blue-bell/10 text-black-onyx" },
+    { title: "Clean", description: "Organized and tidy.", size: "sm", class: "bg-green-300 text-white-ghost" },
+    { title: "Modern", description: "Contemporary design.", size: "sm", class: "bg-blue-bell/10 text-black-onyx" },
+    { title: "Productive", description: "Built for efficiency.", size: "sm", class: "bg-black-onyx/5" },
+          ]}
 />`;
 ---
 
@@ -58,22 +57,20 @@ const usageImageCode = `<BentoGrid
         <h4 class="preview-heading">Default Bento Grid</h4>
         <BentoGrid
           items={[
-            { title: "Lightweight", description: "Only 15KB minified. No bloat, no unnecessary dependencies.", size: "featured", class: "bg-blue-bell text-white-ghost" },
+            { title: "Lightweight", description: "Only 15KB minified. No bloat, no unnecessary dependencies.", size: "featured", class: "bg-blue-300 text-white-ghost" },
             { title: "Copy-Paste", description: "No npm install. Copy the code and paste it directly.", size: "sm" },
             { title: "Customizable", description: "CSS variables for every component.", size: "sm" },
             { title: "Responsive", description: "Mobile-first design. Works on every screen size.", size: "lg", class: "bg-black-onyx/5" },
           ]}
         />
       </div>
-    </div>
-
       <div class="preview-wrapper">
         <h4 class="preview-heading">With Background Image</h4>
         <BentoGrid
           items={[
             { title: "Desktop Setup", description: "Clean workspace for focused development.", size: "featured", imageSrc: Desktop },
             { title: "Minimal", description: "Less is more.", size: "sm", class: "bg-blue-bell/10 text-black-onyx" },
-            { title: "Clean", description: "Organized and tidy.", size: "sm", class: "bg-green-400 text-white-ghost" },
+            { title: "Clean", description: "Organized and tidy.", size: "sm", class: "bg-green-300 text-white-ghost" },
             { title: "Modern", description: "Contemporary design.", size: "sm", class: "bg-blue-bell/10 text-black-onyx" },
             { title: "Productive", description: "Built for efficiency.", size: "sm", class: "bg-black-onyx/5" },
           ]}

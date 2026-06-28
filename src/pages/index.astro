@@ -7,7 +7,7 @@ import { siteData } from "../data/site";
 <Layout title={siteData.brand}>
   <section id="hero" class=" w-full md:text-center">
     <h1 class="text-4xl lg:text-5xl font-semibold">{siteData.tagline}</h1>
-    <p class="lg:text-lg">{siteData.description}</p>
+    <p class="lg:text-lg lg:w-1/2 lg:mx-auto">{siteData.description}</p>
     <div class="grid grid-cols-1 md:grid-cols-2 mx-auto gap-5 w-full md:w-3/4 lg:w-1/2">
       <Button href="/docs/components" class="w-full">Browse Components</Button>
       <Button href="/docs" variant="outline" class="">View Docs</Button>

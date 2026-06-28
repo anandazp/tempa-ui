@@ -1,0 +1,156 @@
+---
+import { siteData } from "../../../data/site";
+
+import DocsLayout from "../../../layouts/DocsLayout.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import ToastNotification from "../../../components/ToastNotification.astro";
+import CodeBlock from "../../../components/CodeBlock.astro";
+import ToastNotificationSource from "../../../components/ToastNotification.astro?raw";
+
+const usageSetup = `<ToastNotification position="top-right" />`;
+
+const usageSolid = `<button onclick="showToast({ message: 'Component code copied to clipboard!', variant: 'solid', duration: 4000 })">
+  Show Solid Toast
+</button>`;
+
+const usageBordered = `<button onclick="showToast({ message: 'Your settings have been saved successfully.', variant: 'left-bordered', duration: 4000 })">
+  Show Left Bordered Toast
+</button>`;
+---
+
+<DocsLayout title=`Toast Notification | ${siteData.brand}`>
+  <section>
+    <div class="space-y-1">
+      <Breadcrumbs
+        items={[
+          { label: "Docs", href: "/docs" },
+          { label: "Components", href: "/components" },
+          { label: "Toast Notification" },
+        ]}
+      />
+      <h2 class="section-title">Toast Notification</h2>
+      <p class="section-description">
+        Fixed-position notification with auto-dismiss and multiple variants.
+      </p>
+    </div>
+
+    <h3 class="section-subtitle">Code</h3>
+    <CodeBlock
+      code={ToastNotificationSource}
+      showLineNumbers={true}
+      fileName="components/ToastNotification.astro"
+    />
+
+    <h3 class="section-subtitle">Preview</h3>
+    <div class="flex flex-col gap-5">
+      <div class="preview-wrapper">
+        <h4 class="preview-heading">Solid Toast</h4>
+        <button
+          class="preview-btn"
+          onclick="showToast({ message: 'Component code copied to clipboard!', variant: 'solid', duration: 4000 })"
+        >
+          Show Solid Toast
+        </button>
+      </div>
+      <div class="preview-wrapper">
+        <h4 class="preview-heading">Left Bordered Toast</h4>
+        <button
+          class="preview-btn"
+          onclick="showToast({ message: 'Your settings have been saved successfully.', variant: 'left-bordered', duration: 4000 })"
+        >
+          Show Left Bordered Toast
+        </button>
+      </div>
+      <div class="preview-wrapper">
+        <h4 class="preview-heading">Long Duration Toast</h4>
+        <button
+          class="preview-btn"
+          onclick="showToast({ message: 'This toast stays for 8 seconds.', variant: 'solid', duration: 8000 })"
+        >
+          Show (8s)
+        </button>
+      </div>
+    </div>
+
+    <h3 class="section-subtitle">Usage</h3>
+    <p class="text-sm text-black-onyx/70 mb-3">
+      Place the <code class="font-mono text-blue-bell text-xs">ToastNotification</code> component once in your layout, then call
+      <code class="font-mono text-blue-bell text-xs">showToast()</code> from anywhere.
+    </p>
+    <CodeBlock language="javascript" code={usageSetup} showLineNumbers={true} />
+    <h4>Solid Variant</h4>
+    <CodeBlock language="javascript" code={usageSolid} showLineNumbers={true} />
+    <h4>Bordered Variant</h4>
+    <CodeBlock language="javascript" code={usageBordered} showLineNumbers={true} />
+
+    <h3 class="section-subtitle">Props</h3>
+    <div class="overflow-x-auto">
+      <table class="props-table">
+        <thead>
+          <tr class="tr-head">
+            <th class="th-cell">Prop</th>
+            <th class="th-cell">Type</th>
+            <th class="th-cell">Default</th>
+            <th class="th-desc">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">position</td>
+            <td class="td-cell prop-type">"top-right" | "top-left" | "bottom-right" | "bottom-left" | "top-center" | "bottom-center"</td>
+            <td class="td-cell prop-type">"top-right"</td>
+            <td class="td-desc">Toast container position.</td>
+          </tr>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">maxToasts</td>
+            <td class="td-cell prop-type">number</td>
+            <td class="td-cell prop-type">5</td>
+            <td class="td-desc">Maximum visible toasts at once.</td>
+          </tr>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">class</td>
+            <td class="td-cell prop-type">string</td>
+            <td class="td-cell">—</td>
+            <td class="td-desc">Additional CSS classes.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4 class="section-subtitle">showToast Options</h4>
+    <div class="overflow-x-auto">
+      <table class="props-table">
+        <thead>
+          <tr class="tr-head">
+            <th class="th-cell">Option</th>
+            <th class="th-cell">Type</th>
+            <th class="th-cell">Default</th>
+            <th class="th-desc">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">message</td>
+            <td class="td-cell prop-type">string</td>
+            <td class="td-cell">—</td>
+            <td class="td-desc">Toast message text.</td>
+          </tr>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">variant</td>
+            <td class="td-cell prop-type">"solid" | "left-bordered"</td>
+            <td class="td-cell prop-type">"solid"</td>
+            <td class="td-desc">Toast style variant.</td>
+          </tr>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">duration</td>
+            <td class="td-cell prop-type">number</td>
+            <td class="td-cell prop-type">5000</td>
+            <td class="td-desc">Auto-dismiss in ms (0 = persistent).</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</DocsLayout>
+
+<ToastNotification />
