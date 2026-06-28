@@ -15,14 +15,6 @@ const usageCode = `<Sidebar
   ]}
 />`;
 
-const collapsedCode = `<Sidebar
-  variant="collapsed"
-  items={[
-    { label: "Dashboard", href: "#" },
-    { label: "Settings", href: "#" },
-    { label: "Profile", href: "#" },
-  ]}
-/>`;
 ---
 
 <DocsLayout title=`Sidebar | ${siteData.brand}`>
@@ -79,9 +71,6 @@ const collapsedCode = `<Sidebar
 
     <h3 class="section-subtitle">Usage</h3>
     <CodeBlock language="javascript" code={usageCode} showLineNumbers={true} />
-
-    <h4 class="font-medium mt-6">Collapsed variant</h4>
-    <CodeBlock language="javascript" code={collapsedCode} showLineNumbers={true} />
 
     <h3 class="section-subtitle">Props</h3>
     <div class="overflow-x-auto">

@@ -14,11 +14,21 @@ const usageVertical = `<Card variant="vertical" imageSrc={Desktop} imageAlt="Des
   <p>Card description here.</p>
 </Card>`;
 
-const usageBordered = `import Desktop from "../../../images/desktop.png";
+const usageHorizontal = `<Card variant="horizontal" imageSrc={Desktop} imageAlt="Desktop" imageWidth={400} imageHeight={400}>
+  <div>
+    <h3>Horizontal Card</h3>
+    <p>Image on the left, content on the right.</p>
+  </div>
+</Card>`;
 
-<Card variant="bordered">
+const usageBordered = `<Card variant="bordered">
   <h3>Bordered Card</h3>
   <p>Minimalist card with thick border.</p>
+</Card>`;
+
+const usageShadowed = `<Card variant="shadowed">
+  <h3>Shadowed Card</h3>
+  <p>Minimalist card with subtle shadow.</p>
 </Card>`;
 ---
 
@@ -101,14 +111,28 @@ const usageBordered = `import Desktop from "../../../images/desktop.png";
     </div>
 
     <h3 class="section-subtitle">Usage</h3>
+    <h4>Vertical/ Default Card</h4>
     <CodeBlock
       language="javascript"
       code={usageVertical}
       showLineNumbers={true}
     />
+    <h4>Horizontal Card</h4>
+    <CodeBlock
+      language="javascript"
+      code={usageHorizontal}
+      showLineNumbers={true}
+    />
+    <h4>Bordered Card</h4>
     <CodeBlock
       language="javascript"
       code={usageBordered}
+      showLineNumbers={true}
+    />
+    <h4>Shadowed Card</h4>
+    <CodeBlock
+      language="javascript"
+      code={usageShadowed}
       showLineNumbers={true}
     />
 
