@@ -1,0 +1,71 @@
+---
+interface Props {
+  type: "sent" | "received";
+  message: string;
+  time?: string;
+  name?: string;
+  avatar?: string;
+  class?: string;
+}
+
+const {
+  type = "received",
+  message,
+  time,
+  name,
+  avatar,
+  class: className = "",
+} = Astro.props;
+
+const isSent = type === "sent";
+
+const alignClass = isSent ? "justify-end" : "justify-start";
+const bubbleColor = isSent
+  ? "bg-black-onyx text-white-ghost rounded-br-md"
+  : "bg-black-onyx/10 text-black-onyx rounded-bl-md";
+const bubbleRound = isSent
+  ? "rounded-tl-xl rounded-tr-xl rounded-bl-xl"
+  : "rounded-tr-xl rounded-br-xl rounded-tl-xl";
+---
+
+<div class={`flex ${alignClass} gap-2.5 ${className}`}>
+  {!isSent && avatar && (
+    <img
+      src={avatar}
+      alt={name ?? "Avatar"}
+      class="w-8 h-8 rounded-full object-cover shrink-0 self-end"
+      loading="lazy"
+    />
+  )}
+  {!isSent && !avatar && (
+    <div class="w-8 h-8 rounded-full bg-black-onyx/20 shrink-0 self-end flex items-center justify-center text-xs font-medium text-black-onyx/60">
+      {name ? name.charAt(0).toUpperCase() : "?"}
+    </div>
+  )}
+  <div class="max-w-[75%]">
+    {name && (
+      <p class="text-xs text-black-onyx/50 mb-1 px-1">{name}</p>
+    )}
+    <div class={`px-4 py-2.5 text-sm leading-relaxed ${bubbleColor} ${bubbleRound}`}>
+      {message}
+    </div>
+    {time && (
+      <p class={`text-xs text-black-onyx/40 mt-1 px-1 ${isSent ? "text-right" : "text-left"}`}>
+        {time}
+      </p>
+    )}
+  </div>
+  {isSent && avatar && (
+    <img
+      src={avatar}
+      alt={name ?? "Avatar"}
+      class="w-8 h-8 rounded-full object-cover shrink-0 self-end"
+      loading="lazy"
+    />
+  )}
+  {isSent && !avatar && (
+    <div class="w-8 h-8 rounded-full bg-black-onyx/20 shrink-0 self-end flex items-center justify-center text-xs font-medium text-black-onyx/60">
+      {name ? name.charAt(0).toUpperCase() : "?"}
+    </div>
+  )}
+</div>

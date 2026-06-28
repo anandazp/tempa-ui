@@ -7,4 +7,8 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+  image: {
+    domains: ["picsum.photos"],
+    remotePatterns: [{ hostname: "**.picsum.photos" }],
+  },
 });

@@ -24,5 +24,7 @@ export const siteData = {
     { label: "Bento Grid", href: "/bento-grid" },
     { label: "Modal", href: "/modal" },
     { label: "Mockup", href: "/mockup" },
+    { label: "Toast Notification", href: "/toast-notification" },
+    { label: "Bubble Chat", href: "/bubble-chat" },
   ],
 };

@@ -1,0 +1,136 @@
+---
+import { siteData } from "../../../data/site";
+
+import DocsLayout from "../../../layouts/DocsLayout.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import BubbleChat from "../../../components/BubbleChat.astro";
+import CodeBlock from "../../../components/CodeBlock.astro";
+import BubbleChatSource from "../../../components/BubbleChat.astro?raw";
+
+const usageCode = `<BubbleChat
+  type="received"
+  message="Hey! Have you checked out the new components?"
+  time="10:30 AM"
+  name="Alice"
+/>
+
+<BubbleChat
+  type="sent"
+  message="Not yet! Are they any good?"
+  time="10:31 AM"
+  name="You"
+/>`;
+---
+
+<DocsLayout title=`Bubble Chat | ${siteData.brand}`>
+  <section>
+    <div class="space-y-1">
+      <Breadcrumbs
+        items={[
+          { label: "Docs", href: "/docs" },
+          { label: "Components", href: "/components" },
+          { label: "Bubble Chat" },
+        ]}
+      />
+      <h2 class="section-title">Bubble Chat</h2>
+      <p class="section-description">
+        Chat message bubbles for sender and receiver with different colors.
+      </p>
+    </div>
+
+    <h3 class="section-subtitle">Code</h3>
+    <CodeBlock
+      code={BubbleChatSource}
+      showLineNumbers={true}
+      fileName="components/BubbleChat.astro"
+    />
+
+    <h3 class="section-subtitle">Preview</h3>
+    <div class="flex flex-col gap-5">
+      <div class="preview-wrapper">
+        <h4 class="preview-heading">Chat Conversation</h4>
+        <div class="flex flex-col gap-3 max-w-lg border border-black-onyx/10 rounded-xl p-4">
+          <BubbleChat
+            type="received"
+            message="Hey! Have you checked out the new components?"
+            time="10:30 AM"
+            name="Alice"
+          />
+          <BubbleChat
+            type="sent"
+            message="Not yet! Are they any good?"
+            time="10:31 AM"
+            name="You"
+          />
+          <BubbleChat
+            type="received"
+            message="They're amazing! Super easy to use and fully accessible."
+            time="10:32 AM"
+            name="Alice"
+          />
+          <BubbleChat
+            type="sent"
+            message="Awesome, I'll take a look right now!"
+            time="10:33 AM"
+            name="You"
+          />
+        </div>
+      </div>
+    </div>
+
+    <h3 class="section-subtitle">Usage</h3>
+    <CodeBlock language="javascript" code={usageCode} showLineNumbers={true} />
+
+    <h3 class="section-subtitle">Props</h3>
+    <div class="overflow-x-auto">
+      <table class="props-table">
+        <thead>
+          <tr class="tr-head">
+            <th class="th-cell">Prop</th>
+            <th class="th-cell">Type</th>
+            <th class="th-cell">Default</th>
+            <th class="th-desc">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">type</td>
+            <td class="td-cell prop-type">"sent" | "received"</td>
+            <td class="td-cell">—</td>
+            <td class="td-desc">Message direction. Sent = right-aligned, dark bubble.</td>
+          </tr>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">message</td>
+            <td class="td-cell prop-type">string</td>
+            <td class="td-cell">—</td>
+            <td class="td-desc">Message text content.</td>
+          </tr>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">time</td>
+            <td class="td-cell prop-type">string</td>
+            <td class="td-cell">—</td>
+            <td class="td-desc">Optional timestamp display.</td>
+          </tr>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">name</td>
+            <td class="td-cell prop-type">string</td>
+            <td class="td-cell">—</td>
+            <td class="td-desc">Sender name shown above bubble.</td>
+          </tr>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">avatar</td>
+            <td class="td-cell prop-type">string</td>
+            <td class="td-cell">—</td>
+            <td class="td-desc">Avatar image URL. Falls back to initial.</td>
+          </tr>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">class</td>
+            <td class="td-cell prop-type">string</td>
+            <td class="td-cell">—</td>
+            <td class="td-desc">Additional CSS classes.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</DocsLayout>
