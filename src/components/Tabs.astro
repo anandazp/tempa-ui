@@ -16,7 +16,7 @@ const {
 } = Astro.props;
 ---
 
-<div class={`tabs ${className}`}>
+<div class={`tabs ${className} space-y-5`}>
   <div class="flex border-b border-black-onyx/10" role="tablist" aria-label="Content tabs">
     {tabs.map((tab, i) => (
       <button
@@ -31,14 +31,7 @@ const {
       </button>
     ))}
   </div>
-  <div
-    role="tabpanel"
-    id={`tabpanel-0`}
-    aria-labelledby={`tab-0`}
-    data-tab-panel
-  >
-    <slot />
-  </div>
+  <slot />
 </div>
 
 <script>

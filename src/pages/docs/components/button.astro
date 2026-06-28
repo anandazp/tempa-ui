@@ -60,30 +60,36 @@ const usageCode = `<MainButton variant='primary'>Get Started</MainButton>
             <th class="th-desc">Description</th>
           </tr>
         </thead>
-        <tbody class="text-black-onyx/80">
+        <tbody>
           <tr class="tr-body">
-            <td class="td-cell prop-name">code</td>
+            <td class="td-cell prop-name">variant</td>
+            <td class="td-cell prop-type">"primary" | "outline"</td>
+            <td class="td-cell prop-type">"primary"</td>
+            <td class="td-desc">Button style variant.</td>
+          </tr>
+          <tr class="tr-body">
+            <td class="td-cell prop-name">href</td>
             <td class="td-cell prop-type">string</td>
             <td class="td-cell">—</td>
-            <td class="td-desc">Source code to display.</td>
+            <td class="td-desc">Link URL. Renders as an anchor when provided.</td>
           </tr>
           <tr class="tr-body">
-            <td class="td-cell prop-name">language</td>
-            <td class="td-cell prop-type">string</td>
-            <td class="td-cell prop-type">"html"</td>
-            <td class="td-desc">Language for syntax highlighting.</td>
+            <td class="td-cell prop-name">type</td>
+            <td class="td-cell prop-type">"button" | "submit" | "reset"</td>
+            <td class="td-cell prop-type">"button"</td>
+            <td class="td-desc">Button type attribute.</td>
           </tr>
           <tr class="tr-body">
-            <td class="td-cell prop-name">showLineNumbers</td>
+            <td class="td-cell prop-name">disabled</td>
             <td class="td-cell prop-type">boolean</td>
             <td class="td-cell prop-type">false</td>
-            <td class="td-desc">Toggle line numbers.</td>
+            <td class="td-desc">Disable interaction.</td>
           </tr>
           <tr class="tr-body">
-            <td class="td-cell prop-name">fileName</td>
+            <td class="td-cell prop-name">class</td>
             <td class="td-cell prop-type">string</td>
             <td class="td-cell">—</td>
-            <td class="td-desc">Optional filename header.</td>
+            <td class="td-desc">Additional CSS classes.</td>
           </tr>
         </tbody>
       </table>
